@@ -1,9 +1,12 @@
+package Obligatorio;
 
-public class Marca {
+public class Clase {
 
 	private String nombre;
 	
-	public Marca(String nombre) {
+	
+	
+	public Clase(String nombre) {
 		this.nombre = nombre;
 	}
 

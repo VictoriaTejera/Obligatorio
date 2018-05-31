@@ -1,11 +1,10 @@
+package Obligatorio;
 
-public class Clase {
+public class Pais {
 
 	private String nombre;
 	
-	
-	
-	public Clase(String nombre) {
+	public Pais(String nombre) {
 		this.nombre = nombre;
 	}
 

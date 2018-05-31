@@ -1,3 +1,4 @@
+package Obligatorio;
 
 public class Rubro {
 
