@@ -109,43 +109,29 @@ public class HeapImpl<P extends Comparable<P>, T> implements MyHeap<P, T> {
 	
 	public  T findAndDelete()  throws HeapVacio {
 		NodoHeap<P,T> datoEliminado=elements[0];
-		
 		if(this.getSize()==0) {
-			throw new HeapVacio("No se puede eliminar nada, el heap está vacío");
+			throw new HeapVacio();
 		}
-		
 		if(this.getSize()==1) {
 			elements[0]=null;
 			size=0;
-			
 		}else {
-		
-		elements[0] = elements[size - 1];  //Paso el ultimo elemento a la primer posición
-		
+		elements[0] = elements[size - 1];  //Paso el ultimo elemento a la primera posición
 		elements[size - 1] = null; //borro el ultimo lugar
 		size--;
-
 		int posActual = 0;
-
-		
 		NodoHeap<P, T> padre = elements[posActual];
 		
-		
-
 		if (tipoArbol == 1) {
-
 			while (  getLeftChild(posActual)!=null && padre.getPriority().compareTo((P) getLeftChild(posActual).getPriority()) < 0
 					||getRightChild(posActual)!=null && padre.getPriority().compareTo((P) getRightChild(posActual).getPriority()) < 0 ) {
 
 				if(getRightChild(posActual)!=null && getLeftChild(posActual)!=null) {
-				
 				if (getRightChild(posActual).getPriority().compareTo(getLeftChild(posActual).getPriority()) < 0) {
-
 					elements[posActual] = getLeftChild(posActual);
 					elements[getPosLeftChild(posActual)] = padre;
 					posActual = getPosLeftChild(posActual);
 					padre = elements[posActual];
-
 				} else {
 					elements[posActual] = getRightChild(posActual);
 					elements[getPosRightChild(posActual)] = padre;
@@ -153,38 +139,58 @@ public class HeapImpl<P extends Comparable<P>, T> implements MyHeap<P, T> {
 					padre = elements[posActual];
 				}
 				}
-
+				else {
+					if(getRightChild(posActual)!=null) {
+						elements[posActual] = getLeftChild(posActual);
+						elements[getPosLeftChild(posActual)] = padre;
+						posActual = getPosLeftChild(posActual);
+						padre = elements[posActual];
+					}
+					else {
+						elements[posActual] = getRightChild(posActual);
+						elements[getPosRightChild(posActual)] = padre;
+						posActual = getPosRightChild(posActual);
+						padre = elements[posActual];
+					}
+				}
 			}
 		}else {
 			while (getLeftChild(posActual)!=null && padre.getPriority().compareTo((P) getLeftChild(posActual).getPriority()) >0
 					||getRightChild(posActual)!=null && padre.getPriority().compareTo((P) getRightChild(posActual).getPriority()) > 0) {
-
 				if(getRightChild(posActual)!=null && getLeftChild(posActual)!=null) {
 					
 				if (getRightChild(posActual).getPriority().compareTo(getLeftChild(posActual).getPriority()) > 0) {
-
 					elements[posActual] = getLeftChild(posActual);
 					elements[getPosLeftChild(posActual)] = padre;
 					posActual = getPosLeftChild(posActual);
 					padre = elements[posActual];
-
 				} else {
 					elements[posActual] = getRightChild(posActual);
 					elements[getPosRightChild(posActual)] = padre;
 					posActual = getPosRightChild(posActual);
 					padre = elements[posActual];
 				}
-
 			}
-			}
-			
+				else {
+					if(getRightChild(posActual)!=null) {
+						elements[posActual] = getRightChild(posActual);
+						elements[getPosRightChild(posActual)] = padre;
+						posActual = getPosRightChild(posActual);
+						padre = elements[posActual];
+					}
+					else {
+						elements[posActual] = getLeftChild(posActual);
+						elements[getPosLeftChild(posActual)] = padre;
+						posActual = getPosLeftChild(posActual);
+						padre = elements[posActual];
+					}
+				}
+			}		
 		}
 		}
 		
 		return datoEliminado.getData();
 	}
-
-
 	public T get() {
 		 
 		T valor=null;
