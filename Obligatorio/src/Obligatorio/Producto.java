@@ -13,6 +13,7 @@ public class Producto {
 	private Empresa empresa;
 	//private LinkedList<Rubro> rubro;
 	
+	
 
 
 	public Producto(//String nombre,String nombreFantasia,
