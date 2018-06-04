@@ -1,6 +1,16 @@
 package Obligatorio;
 
 public class Rubro {
+	
+	private String nombre;
 
-	private int nombre;
+	public Rubro(String nombre) {
+	
+		this.nombre = nombre;
+	
+}
+	
+	public String getNombre() {
+		return nombre;
+	}
 }
