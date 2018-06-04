@@ -1,5 +1,0 @@
-INDEX VERSION 1.130+C:\Users\pachu\Desktop\FIUM\SEMESTRE III\Programacion II\Obligatorio\ObligatorioTejeraFraschini\.metadata\.plugins\org.eclipse.jdt.core
-3602245274.index
-2666360479.index
-878720587.index
-2623342240.index
