@@ -1,2 +1,4 @@
-.metadata
-.class
+.metadata/
+.recommenders/
+*.class
+*.bin
