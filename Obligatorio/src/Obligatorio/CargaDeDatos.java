@@ -95,6 +95,15 @@ public class CargaDeDatos {
 
 			}
 		}
+		if(objeto instanceof Pais) {
+			String nombreClave= ((Pais) objeto).getNombre();
+			if(paises!=null) {
+				if(paises.pertenece(nombreClave)==false) {
+					paises.insertar(nombreClave, (Pais)objeto);
+					
+				}
+			}
+		}
 	}
 
 }
