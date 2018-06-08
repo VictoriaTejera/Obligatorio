@@ -5,10 +5,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 
 import uy.edu.um.prog2.adt.Hash.ElementoYaExistenteException;
 import uy.edu.um.prog2.adt.Hash.HashCerrado;
 import uy.edu.um.prog2.adt.Hash.HashTable;
+import uy.edu.um.prog2.adt.Heap.HeapImpl;
+import uy.edu.um.prog2.adt.Heap.MyHeap;
 import uy.edu.um.prog2.adt.Lista.LinkedList;
 import uy.edu.um.prog2.adt.Lista.List;
 import uy.edu.um.prog2.adt.SearchTree.BinaryTree;
@@ -21,16 +24,19 @@ public class CargaDeDatos {
 	HashTable<String, Clase> clases;
 	HashTable<String, Empresa> empresas;
 
+	
+
 	public CargaDeDatos() {
 		productos = new HashCerrado(42901, true);
 		paises = new HashCerrado(100, true);
 		clases = new HashCerrado(100, true);
-		empresas = new HashCerrado(100, true);
-
+		empresas = new HashCerrado(100,true);
 	}
+	
+	
 
-	public void CargaDeDatos() throws ElementoYaExistenteException, IOException {
-		File f = new File("tabla_datos.csv");
+	public void cargar(String archivo) throws ElementoYaExistenteException, IOException {
+		File f = new File(archivo);
 
 		BufferedReader b = new BufferedReader(new FileReader(f));
 
@@ -140,9 +146,37 @@ public class CargaDeDatos {
 
 	
 	}
+	public HashTable<Integer, Producto> getProductos() {
+		return productos;
+	}
 
-	for(int i = 0;i<=100;i++){
+	public void setProductos(HashTable<Integer, Producto> productos) {
+		this.productos = productos;
+	}
 
-		}
+	public HashTable<String, Pais> getPaises() {
+		return paises;
+	}
+
+	public void setPaises(HashTable<String, Pais> paises) {
+		this.paises = paises;
+	}
+
+	public HashTable<String, Clase> getClases() {
+		return clases;
+	}
+
+	public void setClases(HashTable<String, Clase> clases) {
+		this.clases = clases;
+	}
+
+	public HashTable<String, Empresa> getEmpresas() {
+		return empresas;
+	}
+
+	public void setEmpresas(HashTable<String, Empresa> empresas) {
+		this.empresas = empresas;
+	}
+	
 
 }
