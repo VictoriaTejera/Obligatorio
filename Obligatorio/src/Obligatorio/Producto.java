@@ -1,6 +1,7 @@
 package Obligatorio;
 
 import uy.edu.um.prog2.adt.Lista.LinkedList;
+import uy.edu.um.prog2.adt.Lista.List;
 
 public class Producto {
 
@@ -11,8 +12,8 @@ public class Producto {
 	private Pais pais;
 	private Marca marca;
 	private Empresa empresa;
-	private LinkedList<Rubro> rubro;
-
+	private List<Rubro> rubro;
+	
 	public Producto(String nombre, String nombreFantasia, String estado, Clase clase, Pais pais, Marca marca,
 			Empresa empresa, LinkedList<Rubro> rubro) {
 		super();
@@ -23,7 +24,7 @@ public class Producto {
 		this.pais = pais;
 		this.marca = marca;
 		this.empresa = empresa;
-		 this.rubro = rubro;
+		this.rubro = rubro;
 
 	}
 
@@ -83,7 +84,7 @@ public class Producto {
 		this.empresa = empresa;
 	}
 
-	public LinkedList<Rubro> getRubro() {
+	public List<Rubro> getRubro() {
 		return rubro;
 	}
 

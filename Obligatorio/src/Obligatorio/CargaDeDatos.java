@@ -13,12 +13,13 @@ import uy.edu.um.prog2.adt.Lista.LinkedList;
 import uy.edu.um.prog2.adt.Lista.List;
 
 
-public class CargaDeDatos {
+	public class CargaDeDatos {
 
 	HashTable<Integer, Producto> productos;
 	HashTable<String, Pais> paises;
 	HashTable<String, Clase> clases;
 	HashTable<String, Empresa> empresas;
+	
 
 	public CargaDeDatos() {
 		productos = new HashCerrado(42901, true);
@@ -36,26 +37,49 @@ public class CargaDeDatos {
 		String readLine = "";
 
 		readLine = b.readLine();
+		
+		String[] fields;
+		String nombre;
+		String nombreFantasia;
+		Integer idProd;
+		String rubro;
+		String empresa;
+		String clase;
+		String marca;
+		String pais;
+		String estado = null;
+		String ruc;
+		
+		Empresa oEmpresa;
+		Marca oMarca;
+		Pais oPais;
+		LinkedList<Rubro> oRubro;
+		Clase oClase;
+		Producto producto = null;
+		
+
+		
 
 		while ((readLine = b.readLine()) != null) {
-			String[] fields = readLine.split(";");
-			String nombre = String.valueOf(fields[0]);
-			String nombreFantasia = String.valueOf(fields[1]);
-			Integer idProd = Integer.valueOf(fields[2]);
-			String rubro = String.valueOf(fields[3]);
-			String empresa = String.valueOf(fields[5]);
-			String clase = String.valueOf(fields[10]);
-			String marca = String.valueOf(fields[12]);
-			String pais = String.valueOf(fields[13]);
-			String estado = String.valueOf(fields[20]);
-			String ruc = String.valueOf(fields[23]);
-
-			Empresa oEmpresa = new Empresa(empresa, ruc);
-			Marca oMarca = new Marca(marca);
-			Pais oPais = new Pais(pais);
-			LinkedList<Rubro> oRubro = getRubro(rubro);
-			Clase oClase = new Clase(clase);
-			Producto producto = new Producto(nombre, nombreFantasia, estado, oClase, oPais, oMarca, oEmpresa, oRubro);
+			fields = readLine.split(";");
+			nombre = String.valueOf(fields[0]);
+			nombreFantasia = String.valueOf(fields[1]);
+			idProd = Integer.valueOf(fields[2]);
+			rubro = String.valueOf(fields[3]);
+			empresa = String.valueOf(fields[5]);
+			clase = String.valueOf(fields[10]);
+			marca = String.valueOf(fields[12]);
+			pais = String.valueOf(fields[13]);
+			estado = String.valueOf(fields[20]);
+			ruc = String.valueOf(fields[23]);
+			
+			
+			oEmpresa = new Empresa(empresa, ruc);
+			oMarca = new Marca(marca);
+			oPais = new Pais(pais);
+			oRubro = (LinkedList<Rubro>) getRubro(rubro);
+			oClase = new Clase(clase);
+			producto = new Producto(nombre, nombreFantasia, estado, oClase, oPais, oMarca, oEmpresa, oRubro);
 			productos.insertar(idProd, producto);
 
 			
@@ -64,13 +88,19 @@ public class CargaDeDatos {
 			agregarALaLista(oPais);
 			agregarALaLista(oRubro);
 			agregarALaLista(oClase);
-		}
+			
+			}
 
 		b.close();
-
+		
+		if (estado=="HABILITADO") {
+			Empresa.getpHabilitados().add(producto);
+			
+		}
+		
 	}
 
-	private LinkedList<Rubro> getRubro(String rubro) {
+	private List<Rubro> getRubro(String rubro) {
 
 		List<Rubro> lista = new LinkedList<>();
 		String readLine = "";
