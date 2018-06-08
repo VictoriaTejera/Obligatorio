@@ -33,7 +33,7 @@ public class Reportes {
 
 	public void reporte1() {
 		
-		MyPriotityQueue<Empresa> priorityQueue=new PriorityQueue();
+		MyPriotityQueue<Empresa> priorityQueue=new PriorityQueue<>();
 		
 		HashTable<String, Empresa> empresas=cargaDeDatos.getEmpresas();
 		
@@ -46,7 +46,7 @@ public class Reportes {
 			
 		int clave=oEmpresa.getpHabilitados().size();
 		
-	//	priorityQueue.enqueue(element);
+		priorityQueue.insert(oEmpresa,clave);
 			
 		}
 			
