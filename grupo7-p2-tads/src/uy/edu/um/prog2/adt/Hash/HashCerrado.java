@@ -26,7 +26,7 @@ public class HashCerrado<K, T> implements HashTable<K, T> {
 		if ((float) cantElementos / size > 0.8) {
 			agrandarHash();
 		}
-		int posicion = clave.hashCode() % size;
+		int posicion = abs(clave.hashCode() % size);
 		if (vector[posicion] == null || vector[posicion].isEliminado()) {
 			vector[posicion] = nuevoNodo;
 		} else {
@@ -53,20 +53,24 @@ public class HashCerrado<K, T> implements HashTable<K, T> {
 
 	public boolean pertenece(K clave) {
 		boolean pertenece = false;
-		int posEsperada = clave.hashCode() % size;
+		int posEsperada = abs(clave.hashCode() % size);
 		if (vector[posEsperada] != null) {
 			if (vector[posEsperada].getClave().equals(clave) && vector[posEsperada].isEliminado() == false) {
 				pertenece = true;
 			} else {
 				if (resolucionLineal) {
 					posEsperada++;
+					if(posEsperada==size) {
+						posEsperada=0;
+					}
 					int cantRecorridas = 0;
 					while (cantRecorridas < size
 							&& (vector[posEsperada] != null && !vector[posEsperada].getClave().equals(clave))) {
 						posEsperada++;
-						if (posEsperada >= size) {
-							posEsperada = 0;
+						if(posEsperada==size) {
+							posEsperada=0;
 						}
+						
 						cantRecorridas++;
 					}
 				} else {
@@ -107,13 +111,13 @@ public class HashCerrado<K, T> implements HashTable<K, T> {
 				K claveAux = vector[i].getClave();
 				T valorAux = vector[i].getValor();
 
-				int posicion = claveAux.hashCode() % nuevoSize;
+				int posicion = abs(claveAux.hashCode() % nuevoSize);
 				if (vectorNuevo[posicion] == null) {
 					vectorNuevo[posicion] = vector[i];
 				} else {
 					int posAux = posicion;
 					int cuadratica = 1;
-					while (vector[posAux] != null && vector[posAux].isEliminado()) {
+					while (vectorNuevo[posAux] != null && vectorNuevo[posAux].isEliminado()) {
 						if (resolucionLineal) {
 							posAux++;
 							if (posAux >= size) {

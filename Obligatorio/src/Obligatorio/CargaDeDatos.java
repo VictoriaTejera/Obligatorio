@@ -6,6 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
+
 
 import uy.edu.um.prog2.adt.Hash.ElementoYaExistenteException;
 import uy.edu.um.prog2.adt.Hash.HashCerrado;
@@ -27,22 +30,21 @@ public class CargaDeDatos {
 	
 
 	public CargaDeDatos() {
-		productos = new HashCerrado(42901, true);
+		productos = new HashCerrado(60000, true);
 		paises = new HashCerrado(100, true);
-		clases = new HashCerrado(100, true);
-		empresas = new HashCerrado(100,true);
+		clases = new HashCerrado(800, true);
+		empresas = new HashCerrado(1400,true);
 	}
 	
 	
 
 	public void cargar(String archivo) throws ElementoYaExistenteException, IOException {
-		File f = new File(archivo);
+		
 
-		BufferedReader b = new BufferedReader(new FileReader(f));
+		BufferedReader b = new BufferedReader(new InputStreamReader(new FileInputStream(archivo+".csv"), "UTF-8"));
 
 		String readLine = "";
 
-		readLine = b.readLine();
 
 		String[] fields;
 		String nombre;
@@ -62,9 +64,11 @@ public class CargaDeDatos {
 		LinkedList<Rubro> oRubro;
 		Clase oClase;
 		Producto producto = null;
-
+		b.readLine();
+		
 		while ((readLine = b.readLine()) != null) {
-			fields = readLine.split(";");
+			readLine=readLine.substring(1,readLine.length()-1);
+			fields = readLine.split("\";\"");
 			nombre = String.valueOf(fields[0]);
 			nombreFantasia = String.valueOf(fields[1]);
 			idProd = Integer.valueOf(fields[2]);
@@ -89,15 +93,15 @@ public class CargaDeDatos {
 			agregarALaLista(oPais);
 			agregarALaLista(oRubro);
 			agregarALaLista(oClase);
+			
+			if (estado.equals( "HABILITADO")) {
+				Empresa.getpHabilitados().add(producto);
+
+			}
 
 		}
 
 		b.close();
-
-		if (estado == "HABILITADO") {
-			Empresa.getpHabilitados().add(producto);
-
-		}
 
 	}
 
@@ -105,7 +109,7 @@ public class CargaDeDatos {
 
 		List<Rubro> lista = new LinkedList<>();
 		String readLine = "";
-		String[] fields = readLine.split("-");
+		String[] fields = readLine.split("\";\"");
 		for (int i = 0; i < fields.length; i++) {
 			lista.add(new Rubro(String.valueOf(fields[i])));
 		}
