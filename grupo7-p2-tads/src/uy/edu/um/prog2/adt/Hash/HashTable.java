@@ -1,6 +1,6 @@
 package uy.edu.um.prog2.adt.Hash;
 
-public interface HashTable<K,T> {
+public interface HashTable<K,T> extends Iterable<T> {
 	
 	
 	public void insertar (K clave, T valor) throws ElementoYaExistenteException;

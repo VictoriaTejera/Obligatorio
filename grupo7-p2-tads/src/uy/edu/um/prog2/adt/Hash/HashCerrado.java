@@ -2,6 +2,10 @@ package uy.edu.um.prog2.adt.Hash;
 
 import static java.lang.Math.abs;
 
+import java.util.Iterator;
+import Obligatorio.MyIterator;
+
+
 public class HashCerrado<K, T> implements HashTable<K, T> {
 	private NodoHash<K, T>[] vector;
 	private int size;
@@ -198,6 +202,12 @@ public class HashCerrado<K, T> implements HashTable<K, T> {
 			}
 		}
 		return valor;
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		
+		return new MyIterator<K,T>(vector);
 	}
 
 	
