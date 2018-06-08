@@ -11,7 +11,7 @@ import uy.edu.um.prog2.adt.Hash.HashCerrado;
 import uy.edu.um.prog2.adt.Hash.HashTable;
 import uy.edu.um.prog2.adt.Lista.LinkedList;
 import uy.edu.um.prog2.adt.Lista.List;
-//Agregar atributo idProd a producto
+
 
 public class CargaDeDatos {
 
@@ -58,6 +58,12 @@ public class CargaDeDatos {
 			Producto producto = new Producto(nombre, nombreFantasia, estado, oClase, oPais, oMarca, oEmpresa, oRubro);
 			productos.insertar(idProd, producto);
 
+			
+			agregarALaLista(oEmpresa);
+			agregarALaLista(oMarca);
+			agregarALaLista(oPais);
+			agregarALaLista(oRubro);
+			agregarALaLista(oClase);
 		}
 
 		b.close();
@@ -75,7 +81,7 @@ public class CargaDeDatos {
 		return (LinkedList<Rubro>) lista;
 	}
 
-	private void AgregarALaLista(Object objeto) throws ElementoYaExistenteException {
+	private void agregarALaLista(Object objeto) throws ElementoYaExistenteException {
 		if (objeto instanceof Empresa) {
 			String objClave = ((Empresa) objeto).getRuc();
 			if (empresas != null) {
@@ -105,5 +111,7 @@ public class CargaDeDatos {
 			}
 		}
 	}
+	
+	
 
 }
