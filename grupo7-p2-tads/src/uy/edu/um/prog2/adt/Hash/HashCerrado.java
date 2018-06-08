@@ -3,7 +3,9 @@ package uy.edu.um.prog2.adt.Hash;
 import static java.lang.Math.abs;
 
 import java.util.Iterator;
-import Obligatorio.MyIterator;
+
+import uy.edu.um.prog2.adt.Iterator.MyIterator;
+
 
 
 public class HashCerrado<K, T> implements HashTable<K, T> {
