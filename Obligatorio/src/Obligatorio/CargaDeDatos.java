@@ -11,15 +11,15 @@ import uy.edu.um.prog2.adt.Hash.HashCerrado;
 import uy.edu.um.prog2.adt.Hash.HashTable;
 import uy.edu.um.prog2.adt.Lista.LinkedList;
 import uy.edu.um.prog2.adt.Lista.List;
+import uy.edu.um.prog2.adt.SearchTree.BinaryTree;
+import uy.edu.um.prog2.adt.SearchTree.MyBinarySearchTree;
 
-
-	public class CargaDeDatos {
+public class CargaDeDatos {
 
 	HashTable<Integer, Producto> productos;
 	HashTable<String, Pais> paises;
 	HashTable<String, Clase> clases;
 	HashTable<String, Empresa> empresas;
-	
 
 	public CargaDeDatos() {
 		productos = new HashCerrado(42901, true);
@@ -37,7 +37,7 @@ import uy.edu.um.prog2.adt.Lista.List;
 		String readLine = "";
 
 		readLine = b.readLine();
-		
+
 		String[] fields;
 		String nombre;
 		String nombreFantasia;
@@ -49,16 +49,13 @@ import uy.edu.um.prog2.adt.Lista.List;
 		String pais;
 		String estado = null;
 		String ruc;
-		
+
 		Empresa oEmpresa;
 		Marca oMarca;
 		Pais oPais;
 		LinkedList<Rubro> oRubro;
 		Clase oClase;
 		Producto producto = null;
-		
-
-		
 
 		while ((readLine = b.readLine()) != null) {
 			fields = readLine.split(";");
@@ -72,8 +69,7 @@ import uy.edu.um.prog2.adt.Lista.List;
 			pais = String.valueOf(fields[13]);
 			estado = String.valueOf(fields[20]);
 			ruc = String.valueOf(fields[23]);
-			
-			
+
 			oEmpresa = new Empresa(empresa, ruc);
 			oMarca = new Marca(marca);
 			oPais = new Pais(pais);
@@ -82,22 +78,21 @@ import uy.edu.um.prog2.adt.Lista.List;
 			producto = new Producto(nombre, nombreFantasia, estado, oClase, oPais, oMarca, oEmpresa, oRubro);
 			productos.insertar(idProd, producto);
 
-			
 			agregarALaLista(oEmpresa);
 			agregarALaLista(oMarca);
 			agregarALaLista(oPais);
 			agregarALaLista(oRubro);
 			agregarALaLista(oClase);
-			
-			}
+
+		}
 
 		b.close();
-		
-		if (estado=="HABILITADO") {
+
+		if (estado == "HABILITADO") {
 			Empresa.getpHabilitados().add(producto);
-			
+
 		}
-		
+
 	}
 
 	private List<Rubro> getRubro(String rubro) {
@@ -140,8 +135,14 @@ import uy.edu.um.prog2.adt.Lista.List;
 				}
 			}
 		}
+	
+	
+
+	
 	}
-	
-	
+
+	for(int i = 0;i<=100;i++){
+
+		}
 
 }

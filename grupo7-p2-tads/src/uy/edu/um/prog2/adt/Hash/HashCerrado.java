@@ -1,5 +1,7 @@
 package uy.edu.um.prog2.adt.Hash;
 
+import static java.lang.Math.abs;
+
 public class HashCerrado<K, T> implements HashTable<K, T> {
 	private NodoHash<K, T>[] vector;
 	private int size;
@@ -156,4 +158,49 @@ public class HashCerrado<K, T> implements HashTable<K, T> {
 		}
 		return nodo;
 	}
+	
+	public T obtener(K key) {
+		T valor = null;
+		int posEsperada = abs(key.hashCode() % size);
+		if (vector[posEsperada] != null) {
+			if (vector[posEsperada].getClave().equals(key) && vector[posEsperada].isEliminado() == false) {
+				valor = vector[posEsperada].getValor();
+			} else {
+				if (resolucionLineal) {
+					posEsperada++;
+					if (posEsperada >= size) {
+						posEsperada = 0;
+					}
+					int cantRecorridas = 0;
+					while (cantRecorridas < size
+							&& (vector[posEsperada] != null && !vector[posEsperada].getClave().equals(key))) {
+						posEsperada++;
+						if (posEsperada >= size) {
+							posEsperada = 0;
+						}
+						cantRecorridas++;
+					}
+				} else {
+					int cuadratica = 1;
+					while (vector[posEsperada] != null && !vector[posEsperada].getClave().equals(key)) {
+						posEsperada = posEsperada + cuadratica * cuadratica;
+						cuadratica++;
+						while (posEsperada >= size) {
+							posEsperada = posEsperada - size;
+						}
+					}
+				}
+				if (posEsperada < vector.length && vector[posEsperada] != null) {
+					if (vector[posEsperada].getClave().equals(key) && vector[posEsperada].isEliminado() == false) {
+						valor = vector[posEsperada].getValor();
+					}
+				}
+			}
+		}
+		return valor;
+	}
+
+	
+
+
 }
