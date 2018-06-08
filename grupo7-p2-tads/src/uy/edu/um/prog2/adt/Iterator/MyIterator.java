@@ -6,7 +6,7 @@ import uy.edu.um.prog2.adt.Hash.NodoHash;
 
 
 
-public class MyIterator<K , T> implements Iterator<T> {
+public class MyIterator<K,T> implements Iterator<T> {
 
 	protected int posicion = 0;
 	protected NodoHash<K, T>[] vectorHash;

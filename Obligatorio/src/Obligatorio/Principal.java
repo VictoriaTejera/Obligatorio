@@ -9,24 +9,9 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
+		Reportes reporte= new Reportes();
 		
-		Scanner sc= new Scanner(System.in);
-		
-		System.out.println("Ingresar el archivo de datos");
-		
-		CargaDeDatos cargaDeDatos= new CargaDeDatos();
-		
-		try {
-			cargaDeDatos.cargar(sc.next());
-		} catch (ElementoYaExistenteException e) {
-			
-		} catch (IOException e) {
-			
-
-		
-		
-	}
-
+		reporte.reporte1();
 		
 		
 		
