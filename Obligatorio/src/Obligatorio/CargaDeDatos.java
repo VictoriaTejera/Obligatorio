@@ -26,7 +26,8 @@ public class CargaDeDatos {
 	HashTable<String, Pais> paises;
 	HashTable<String, Clase> clases;
 	HashTable<String, Empresa> empresas;
-
+	HashTable<String, Marca> marcas;
+	
 	
 
 	public CargaDeDatos() {
@@ -34,6 +35,8 @@ public class CargaDeDatos {
 		paises = new HashCerrado(100, true);
 		clases = new HashCerrado(800, true);
 		empresas = new HashCerrado(1400,true);
+		marcas = new HashCerrado(1400,true);
+	
 	}
 	
 	
@@ -49,7 +52,7 @@ public class CargaDeDatos {
 		String[] fields;
 		String nombre;
 		String nombreFantasia;
-		Integer idProd;
+		String idProd = null;
 		String rubro;
 		String empresa;
 		String clase;
@@ -57,10 +60,9 @@ public class CargaDeDatos {
 		String pais;
 		String estado = null;
 		String ruc;
-		Integer nroHabilitacion;
+		String nroHabilitacion = null;
 		String clave; 
-		String sNroHabilitacion = nroHabilitacion.toString();
-		String sIdProd = idProd.toString();
+	
 
 		Empresa oEmpresa;
 		Marca oMarca;
@@ -75,30 +77,33 @@ public class CargaDeDatos {
 			fields = readLine.split("\";\"");
 			nombre = String.valueOf(fields[0]);
 			nombreFantasia = String.valueOf(fields[1]);
-			idProd = Integer.valueOf(fields[2]);
+			idProd = String.valueOf(fields[2]);
 			rubro = String.valueOf(fields[3]);
-			nroHabilitacion = Integer.valueOf(fields[3]);
+			nroHabilitacion = String.valueOf(fields[3]);
 			empresa = String.valueOf(fields[5]);
 			clase = String.valueOf(fields[10]);
 			marca = String.valueOf(fields[12]);
 			pais = String.valueOf(fields[13]);
 			estado = String.valueOf(fields[20]);
 			ruc = String.valueOf(fields[23]);
-			clave = sIdProd + sNroHabilitacion + nombre;
 			
 			
-			oEmpresa= new Empresa(empresa, ruc);
-			
-			
-			oMarca = new Marca(marca);
-			oPais = new Pais(pais);
+			oEmpresa = buscarEmpresa(empresa,ruc);
+			oPais = buscarPais(nombre);
+			oMarca = buscarMarca(nombre);
+			oClase = buscarClase(nombre);
 			oRubro = (LinkedList<Rubro>) getRubro(rubro);
-			oClase = new Clase(clase);
+			
+			
+			clave = idProd + nroHabilitacion + nombre;
+	
 			producto = new Producto(nombre, nombreFantasia, estado, oClase, oPais, oMarca, oEmpresa, oRubro);
+
 			productos.insertar(clave, producto);
+					
 
 			
-			oEmpresa=empresas.obtener(key)
+			
 			agregarALaLista(oEmpresa);
 			agregarALaLista(oMarca);
 			agregarALaLista(oPais);
@@ -127,7 +132,60 @@ public class CargaDeDatos {
 		}
 		return (LinkedList<Rubro>) lista;
 	}
+	
+	private Empresa buscarEmpresa(String empresa, String ruc) {
+		Empresa oEmpresa;
+		if (empresas.pertenece(ruc)==true) {
+			
+		oEmpresa=empresas.obtener(ruc);
+		
+		}
+		else {
+			oEmpresa=new Empresa(empresa,ruc);
+		}
+		return oEmpresa;
+	}
+	
+	private Marca buscarMarca(String nombre) {
+		Marca oMarca;
+		if (marcas.pertenece(nombre)==true) {
+			
+		oMarca=marcas.obtener(nombre);
+		
+		}
+		else {
+			oMarca=new Marca(nombre);
+		}
+		return oMarca;
+	}
+	
+	private Pais buscarPais(String nombre) {
+		Pais oPais;
+		if (paises.pertenece(nombre)==true) {
+			
+		oPais=paises.obtener(nombre);
+		
+		}
+		else {
+			oPais=new Pais(nombre);
+		}
+		return oPais;
+	}
 
+	
+	private Clase buscarClase(String nombre) {
+		Clase oClase;
+		if (clases.pertenece(nombre)==true) {
+			
+		oClase=clases.obtener(nombre);
+		
+		}
+		else {
+			oClase=new Clase(nombre);
+		}
+		return oClase;
+	}
+	
 	private void agregarALaLista(Object objeto) throws ElementoYaExistenteException {
 		
 		
@@ -140,7 +198,7 @@ public class CargaDeDatos {
 			}
 		
 			
-			//empresas.insertar(objClave, (Empresa) objeto);
+			
 		}
 		if (objeto instanceof Clase) {
 			String nombreClave= ((Clase) objeto).getNombre();
@@ -166,11 +224,11 @@ public class CargaDeDatos {
 
 	
 	}
-	public HashTable<Integer, Producto> getProductos() {
+	public HashTable<String, Producto> getProductos() {
 		return productos;
 	}
 
-	public void setProductos(HashTable<Integer, Producto> productos) {
+	public void setProductos(HashTable<String, Producto> productos) {
 		this.productos = productos;
 	}
 
