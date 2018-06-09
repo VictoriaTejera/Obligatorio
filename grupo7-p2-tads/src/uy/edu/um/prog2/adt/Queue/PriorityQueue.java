@@ -33,11 +33,11 @@ public class PriorityQueue<T> implements MyPriotityQueue<T> {
 		if(primero==null) {
 			throw new EmptyQueueException();
 		}else {
-		first= primero.getValor();}
+			first= primero.getValor();
+		}
 		return first;
 	}
-
-
+ 
 	
 	public void insert(T valor, int prioridad) {
 		NodoWPrioridad<T> oItem= new NodoWPrioridad<T>(valor, prioridad);
@@ -46,29 +46,33 @@ public class PriorityQueue<T> implements MyPriotityQueue<T> {
 		if(primero==null) {
 			primero=oItem;
 		}
-		else if(primero.getSiguiente()==null) {
+		/*else if(primero.getSiguiente()==null) {
 			if(primero.getPrioridad()>=oItem.getPrioridad()) {
 				primero.setSiguiente(oItem);
 			}else {
 				oItem.setSiguiente(primero);
 				primero=oItem;
 			}
-		}else {
-		try {
-		while(ultimo.getSiguiente().getPrioridad()>= oItem.getPrioridad()) {
-			ultimo=ultimo.getSiguiente();
-		}
-		oItem.setSiguiente(ultimo.getSiguiente());
-		ultimo.setSiguiente(oItem);
-		}catch(NullPointerException e){
-			NodoWPrioridad<T>ultimoP=primero;
-			while(ultimoP.getSiguiente()!=null) {
-				ultimoP=ultimoP.getSiguiente();
+		}*/ else {
+			try {
+				while ((ultimo.getSiguiente() != null) && (ultimo.getSiguiente().getPrioridad() >= oItem.getPrioridad())) {
+					ultimo=ultimo.getSiguiente();
+				}
+				if (ultimo.getSiguiente() == null) {
+					oItem.setSiguiente(null);
+				} else {
+					oItem.setSiguiente(ultimo.getSiguiente());
+				}
+				ultimo.setSiguiente(oItem);
+			} catch(NullPointerException e){
+				NodoWPrioridad<T>ultimoP=primero;
+				while(ultimoP.getSiguiente()!=null) {
+					ultimoP=ultimoP.getSiguiente();
+				}
+				ultimoP.setSiguiente(oItem);
+				
+				
 			}
-			ultimoP.setSiguiente(oItem);
-			
-			
-		}
 		}
 		}
 

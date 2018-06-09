@@ -56,6 +56,7 @@ public class CargaDeDatos {
 		String rubro;
 		String empresa;
 		String clase;
+		String idClase;
 		String marca;
 		String pais;
 		String estado = null;
@@ -81,6 +82,7 @@ public class CargaDeDatos {
 			rubro = String.valueOf(fields[3]);
 			nroHabilitacion = String.valueOf(fields[3]);
 			empresa = String.valueOf(fields[5]);
+			idClase = String.valueOf(fields[9]);
 			clase = String.valueOf(fields[10]);
 			marca = String.valueOf(fields[12]);
 			pais = String.valueOf(fields[13]);
@@ -88,10 +90,11 @@ public class CargaDeDatos {
 			ruc = String.valueOf(fields[23]);
 			
 			
+			
 			oEmpresa = buscarEmpresa(empresa,ruc);
 			oPais = buscarPais(nombre);
 			oMarca = buscarMarca(nombre);
-			oClase = buscarClase(nombre);
+			oClase = buscarClase(idClase);
 			oRubro = (LinkedList<Rubro>) getRubro(rubro);
 			
 			
@@ -112,7 +115,7 @@ public class CargaDeDatos {
 			
 			if (estado.equals("HABILITADO")) {
 				oEmpresa.addProducto(producto);
-			
+				//oMarca.addProducto(producto);
 			}
 			
 
@@ -173,15 +176,15 @@ public class CargaDeDatos {
 	}
 
 	
-	private Clase buscarClase(String nombre) {
+	private Clase buscarClase(String idClase) {
 		Clase oClase;
-		if (clases.pertenece(nombre)==true) {
+		if (clases.pertenece(idClase)==true) {
 			
-		oClase=clases.obtener(nombre);
+		oClase=clases.obtener(idClase);
 		
 		}
 		else {
-			oClase=new Clase(nombre);
+			oClase=new Clase(idClase);
 		}
 		return oClase;
 	}
@@ -254,6 +257,13 @@ public class CargaDeDatos {
 
 	public void setEmpresas(HashTable<String, Empresa> empresas) {
 		this.empresas = empresas;
+	}
+
+
+
+	public HashTable<String, Marca> getMarcas() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

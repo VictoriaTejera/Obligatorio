@@ -11,7 +11,10 @@ public class Principal {
 		
 		Reportes reporte= new Reportes();
 		
+		System.out.println("20 empresas con mayor cantidad de productos habilitados (empresa, cantidad):");
+		System.out.println("");
 		reporte.reporte1();
+		reporte.reporte2();
 		
 		
 	

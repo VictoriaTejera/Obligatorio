@@ -19,7 +19,7 @@ public class TestPriorityQueue {
 		MyPriotityQueue<Integer> priorityQueue= new PriorityQueue<>();
 		
 		
-		priorityQueue.enqueue(1);
+		priorityQueue.insert(1,10);
 		priorityQueue.insert(2,20);
 		priorityQueue.insert(5, 1);
 		priorityQueue.insert(3, 7);
@@ -36,13 +36,13 @@ public class TestPriorityQueue {
 		try {
 			priorityQueue.dequeue();
 			int first2= priorityQueue.getFirst();
-			assertEquals(first2,3);
+			assertEquals(first2,1);
 			priorityQueue.dequeue();
 			int first3=priorityQueue.getFirst();
-			assertEquals(first3,5);
+			assertEquals(first3,3);
 			priorityQueue.dequeue();
 			int first4= priorityQueue.getFirst();
-			assertEquals(first4,1);
+			assertEquals(first4,5);
 		} catch (EmptyQueueException e) {
 			fail();
 		}
