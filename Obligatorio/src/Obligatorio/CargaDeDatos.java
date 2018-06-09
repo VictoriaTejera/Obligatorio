@@ -70,7 +70,7 @@ public class CargaDeDatos {
 		Pais oPais;
 		LinkedList<Rubro> oRubro;
 		Clase oClase;
-		Producto producto = null;
+		Producto producto = null; 
 		b.readLine();
 		
 		while ((readLine = b.readLine()) != null) {
@@ -104,9 +104,6 @@ public class CargaDeDatos {
 
 			productos.insertar(clave, producto);
 					
-
-			
-			
 			agregarALaLista(oEmpresa);
 			agregarALaLista(oMarca);
 			agregarALaLista(oPais);
@@ -115,7 +112,7 @@ public class CargaDeDatos {
 			
 			if (estado.equals("HABILITADO")) {
 				oEmpresa.addProducto(producto);
-				//oMarca.addProducto(producto);
+				oMarca.addProducto(producto);
 			}
 			
 
@@ -151,10 +148,8 @@ public class CargaDeDatos {
 	
 	private Marca buscarMarca(String nombre) {
 		Marca oMarca;
-		if (marcas.pertenece(nombre)==true) {
-			
-		oMarca=marcas.obtener(nombre);
-		
+		if (marcas.pertenece(nombre)==true) { 
+			oMarca=marcas.obtener(nombre);
 		}
 		else {
 			oMarca=new Marca(nombre);
@@ -262,8 +257,7 @@ public class CargaDeDatos {
 
 
 	public HashTable<String, Marca> getMarcas() {
-		// TODO Auto-generated method stub
-		return null;
+		return marcas;
 	}
 	
 	

@@ -70,9 +70,9 @@ public class Reportes {
 	
 	public void marcasPorPais(Pais oPais) {
 		
-			MyPriotityQueue<Marca> priorityQueue=new PriorityQueue<>();
-		
-			HashTable<String, Marca> marcas=cargaDeDatos.getMarcas();
+		MyPriotityQueue<Marca> priorityQueue=new PriorityQueue<>();
+	
+		HashTable<String, Marca> marcas = cargaDeDatos.getMarcas();
 			
 		Iterator<Marca> iteratorMarca = marcas.iterator();
 		int clave=0;

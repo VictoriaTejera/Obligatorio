@@ -11,18 +11,28 @@ public class Marca {
 	public void addProducto(Producto nombre) {
 		pHabilitados.add(nombre);
 	}
+	
 	public List<Producto> getpHabilitados() {
 		return pHabilitados;
 	}
+	
 	public void setpHabilitados(List<Producto> pHabilitados) {
 		this.pHabilitados = pHabilitados;
 	}
+	
 	public Marca(String nombre) {
 		this.nombre = nombre;
 	}
-	
 
 	public String getNombre() {
 		return nombre;
+	}
+	
+	public boolean equals(Marca e) {
+		boolean equal=false;
+		if(this.nombre.equals(e.getNombre())==true) {
+			equal=true;
+		}
+		return equal;
 	}
 }
