@@ -11,8 +11,11 @@ public class PriorityQueue<T> implements MyPriotityQueue<T> {
 
 	
 	public void dequeue() throws EmptyQueueException {
+		if(primero!=null) {
 		primero=primero.getSiguiente();
-		
+		}else {
+			throw new EmptyQueueException();
+		}
 	}
 
 	

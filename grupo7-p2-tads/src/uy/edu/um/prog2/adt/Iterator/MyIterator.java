@@ -41,13 +41,17 @@ public class MyIterator<K,T> implements Iterator<T> {
 
 	public T next() {
 		
-		T oExit = vectorHash[posicion].getValor();
-		posicion++;
+		T	oExit=null;
+	
 		
-		while(posicion<vectorHash.length && ( vectorHash[posicion] == null || vectorHash[posicion].isEliminado() )) {
+		while( oExit == null && posicion<vectorHash.length) {
+			
+			if(vectorHash[posicion]!=null && !vectorHash[posicion].isEliminado()) {
+				oExit=vectorHash[posicion].getValor();
+			}
 			posicion++;
+			
 		}
-		oExit= vectorHash[posicion].getValor();
 		return oExit;
 	}
 

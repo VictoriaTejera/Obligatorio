@@ -63,8 +63,31 @@ public class TestPriorityQueue {
 		int size= priorityQueue.size();
 		assertEquals(size, 5);
 		
-		//priorityQueue.dequeue();
+		try {
+			priorityQueue.dequeue();
+			priorityQueue.dequeue();
+			priorityQueue.dequeue();
+			priorityQueue.dequeue();
+			
+		} catch (EmptyQueueException e) {
+			
+		}
+		assertEquals(1,priorityQueue.size());
 		
+		
+		try {
+			priorityQueue.dequeue();
+		} catch (EmptyQueueException e) {
+			
+		}
+		assertEquals(0,priorityQueue.size());
+		
+		try {
+			priorityQueue.dequeue();
+			fail();
+		} catch (EmptyQueueException e) {
+			
+		}
 	}
 
 }

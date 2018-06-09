@@ -10,6 +10,7 @@ public class Producto {
 	private String estado;
 	private Clase clase;
 	private Pais pais;
+	private int nroHabilitacion;
 	private Marca marca;
 	private Empresa empresa;
 	private List<Rubro> rubro;

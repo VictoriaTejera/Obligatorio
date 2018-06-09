@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import uy.edu.um.prog2.adt.Hash.ElementoYaExistenteException;
 import uy.edu.um.prog2.adt.Hash.HashTable;
+import uy.edu.um.prog2.adt.Queue.EmptyQueueException;
 import uy.edu.um.prog2.adt.Queue.MyPriotityQueue;
 import uy.edu.um.prog2.adt.Queue.PriorityQueue;
 
@@ -39,14 +40,29 @@ public class Reportes {
 		
 		
 		Iterator<Empresa> iteratorEmpresa=empresas.iterator();
-		
+		int clave=0;
 		
 		while(iteratorEmpresa.hasNext()==true) {
 			Empresa oEmpresa=  iteratorEmpresa.next();
+		
 			
-		int clave=oEmpresa.getpHabilitados().size();
+		clave=oEmpresa.getpHabilitados().size();
+		
 		
 		priorityQueue.insert(oEmpresa,clave);
+		}
+		
+		for(int i=0; i<20; i++) {
+		try {
+			System.out.println(priorityQueue.getFirst().getNombre() + " " + priorityQueue.getFirst().getpHabilitados().size());
+			
+			priorityQueue.dequeue();
+			
+		} catch (EmptyQueueException e) {
+			
+		}
+		
+		
 			
 		}
 			

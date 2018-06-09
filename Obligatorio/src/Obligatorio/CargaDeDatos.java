@@ -22,7 +22,7 @@ import uy.edu.um.prog2.adt.SearchTree.MyBinarySearchTree;
 
 public class CargaDeDatos {
 
-	HashTable<Integer, Producto> productos;
+	HashTable<String, Producto> productos;
 	HashTable<String, Pais> paises;
 	HashTable<String, Clase> clases;
 	HashTable<String, Empresa> empresas;
@@ -57,6 +57,10 @@ public class CargaDeDatos {
 		String pais;
 		String estado = null;
 		String ruc;
+		Integer nroHabilitacion;
+		String clave; 
+		String sNroHabilitacion = nroHabilitacion.toString();
+		String sIdProd = idProd.toString();
 
 		Empresa oEmpresa;
 		Marca oMarca;
@@ -73,31 +77,39 @@ public class CargaDeDatos {
 			nombreFantasia = String.valueOf(fields[1]);
 			idProd = Integer.valueOf(fields[2]);
 			rubro = String.valueOf(fields[3]);
+			nroHabilitacion = Integer.valueOf(fields[3]);
 			empresa = String.valueOf(fields[5]);
 			clase = String.valueOf(fields[10]);
 			marca = String.valueOf(fields[12]);
 			pais = String.valueOf(fields[13]);
 			estado = String.valueOf(fields[20]);
 			ruc = String.valueOf(fields[23]);
-
-			oEmpresa = new Empresa(empresa, ruc);
+			clave = sIdProd + sNroHabilitacion + nombre;
+			
+			
+			oEmpresa= new Empresa(empresa, ruc);
+			
+			
 			oMarca = new Marca(marca);
 			oPais = new Pais(pais);
 			oRubro = (LinkedList<Rubro>) getRubro(rubro);
 			oClase = new Clase(clase);
 			producto = new Producto(nombre, nombreFantasia, estado, oClase, oPais, oMarca, oEmpresa, oRubro);
-			productos.insertar(idProd, producto);
+			productos.insertar(clave, producto);
 
+			
+			oEmpresa=empresas.obtener(key)
 			agregarALaLista(oEmpresa);
 			agregarALaLista(oMarca);
 			agregarALaLista(oPais);
 			agregarALaLista(oRubro);
 			agregarALaLista(oClase);
 			
-			if (estado.equals( "HABILITADO")) {
-				Empresa.getpHabilitados().add(producto);
-
+			if (estado.equals("HABILITADO")) {
+				oEmpresa.addProducto(producto);
+			
 			}
+			
 
 		}
 
@@ -117,14 +129,18 @@ public class CargaDeDatos {
 	}
 
 	private void agregarALaLista(Object objeto) throws ElementoYaExistenteException {
+		
+		
 		if (objeto instanceof Empresa) {
 			String objClave = ((Empresa) objeto).getRuc();
-			if (empresas != null) {
-				if (empresas.pertenece(objClave) == false) {
-					empresas.insertar(objClave, (Empresa) objeto);
-
-				}
+			
+			
+			if (!empresas.pertenece(objClave)) {
+				empresas.insertar(objClave, (Empresa) objeto);
 			}
+		
+			
+			//empresas.insertar(objClave, (Empresa) objeto);
 		}
 		if (objeto instanceof Clase) {
 			String nombreClave= ((Clase) objeto).getNombre();

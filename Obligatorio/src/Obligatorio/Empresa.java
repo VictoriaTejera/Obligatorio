@@ -8,7 +8,7 @@ public class Empresa {
 	
 	private String nombre;
 	private String ruc;
-	public static List<Producto> pHabilitados;
+	private List<Producto> pHabilitados;
 	
 	
 	
@@ -17,7 +17,11 @@ public class Empresa {
 		this.ruc = ruc;
 		pHabilitados = new LinkedList();
 	}
-	public static List<Producto> getpHabilitados() {
+	
+	public void addProducto(Producto nombre) {
+		pHabilitados.add(nombre);
+	}
+	public List<Producto> getpHabilitados() {
 		return pHabilitados;
 	}
 	public void setpHabilitados(List<Producto> pHabilitados) {
