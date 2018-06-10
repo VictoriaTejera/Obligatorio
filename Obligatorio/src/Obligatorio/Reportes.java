@@ -110,15 +110,14 @@ public class Reportes {
 		int clave=0;
 		
 		while(iteratorPais.hasNext()==true) {
-			Pais oPais =  iteratorPais.next();
+			Pais oPais = iteratorPais.next();
 			marcasPorPais(oPais);
 			System.out.println(oPais.getNombre());
 			for(int i=0; i<10; i++) {
 				try {
-					System.out.println(oPais.getMarcasMasPhabilitados().get(i));
-					System.out.println(oPais.getMarcasMasPhabilitados().size());
+					System.out.println(oPais.getMarcasMasPhabilitados().get(i).getNombre() + " " + oPais.getMarcasMasPhabilitados().size());
 				} catch (PosInvalida e) {
-				
+					System.out.println("Exception: " + e.getMessage());
 				}
 			}
 		}

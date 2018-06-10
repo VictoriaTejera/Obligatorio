@@ -217,6 +217,15 @@ public class CargaDeDatos {
 				}
 			}
 		}
+		if(objeto instanceof Marca) {
+			String nombreClave= ((Marca) objeto).getNombre();
+			if(marcas!=null) {
+				if(marcas.pertenece(nombreClave)==false) {
+					marcas.insertar(nombreClave, (Marca)objeto);
+					
+				}
+			}
+		}
 	
 	
 
@@ -253,8 +262,6 @@ public class CargaDeDatos {
 	public void setEmpresas(HashTable<String, Empresa> empresas) {
 		this.empresas = empresas;
 	}
-
-
 
 	public HashTable<String, Marca> getMarcas() {
 		return marcas;

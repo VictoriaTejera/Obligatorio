@@ -1,5 +1,6 @@
 package Obligatorio;
 
+import uy.edu.um.prog2.adt.Lista.LinkedList;
 import uy.edu.um.prog2.adt.Lista.List;
 
 public class Pais {
@@ -27,6 +28,7 @@ public class Pais {
 
 	public Pais(String nombre) {
 		this.nombre = nombre;
+		marcasMasPhabilitados = new LinkedList();
 	}
 
 	public String getNombre() {
