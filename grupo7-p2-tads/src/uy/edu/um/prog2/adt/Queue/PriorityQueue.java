@@ -53,8 +53,10 @@ public class PriorityQueue<T> implements MyPriotityQueue<T> {
 				oItem.setSiguiente(primero);
 				primero=oItem;
 			}
-		}*/ else {
-			try {
+		}*/ else if(primero.getPrioridad()<oItem.getPrioridad())
+			{oItem.setSiguiente(primero);
+			primero=oItem;}
+		else{try {
 				while ((ultimo.getSiguiente() != null) && (ultimo.getSiguiente().getPrioridad() >= oItem.getPrioridad())) {
 					ultimo=ultimo.getSiguiente();
 				}
