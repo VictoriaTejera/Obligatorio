@@ -101,21 +101,19 @@ public class Reportes {
 	
 	public void reporte2() {
 		
-		
 		MyPriotityQueue<Marca> priorityQueue=new PriorityQueue<>();
 		
 		HashTable<String, Pais> paises = cargaDeDatos.getPaises();
 		
-		Iterator<Pais> iteratorPais=paises.iterator();
+		Iterator<Pais> iteratorPais = paises.iterator();
 		int clave=0;
-		
 		while(iteratorPais.hasNext()==true) {
 			Pais oPais = iteratorPais.next();
+			System.out.println("PAIS:  " + oPais.getNombre());
 			marcasPorPais(oPais);
-			System.out.println(oPais.getNombre());
 			for(int i=0; i<10; i++) {
 				try {
-					System.out.println(oPais.getMarcasMasPhabilitados().get(i).getNombre() + " " + oPais.getMarcasMasPhabilitados().size());
+					System.out.println(oPais.getMarcasMasPhabilitados().get(i).getNombre() + " " + oPais.getMarcasMasPhabilitados().get(i).getpHabilitados().size());
 				} catch (PosInvalida e) {
 					System.out.println("Exception: " + e.getMessage());
 				}
