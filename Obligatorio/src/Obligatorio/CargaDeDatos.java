@@ -93,11 +93,12 @@ public class CargaDeDatos {
 			oEmpresa = buscarEmpresa(empresa,ruc);
 			oPais = buscarPais(pais);
 			oMarca = buscarMarca(marca);
-			oClase = buscarClase(idClase);
+			oClase = buscarClase(idClase,clase);
 			oRubro = (LinkedList<Rubro>) getRubro(rubro);
 			
 			
 			oMarca.setPaisMarca(oPais);
+			oClase.setPaisClase(oPais);
 			
 			clave = idProd + nroHabilitacion + nombre;
 	
@@ -114,8 +115,7 @@ public class CargaDeDatos {
 			if (estado.equals("HABILITADO")) {
 				oEmpresa.addProducto(producto);
 				oMarca.addProducto(producto);
-				if(oPais.getmarcasPais().isOnList(oMarca)==false) {
-				oPais.agregarAMarcas(oMarca);}
+				oClase.addProducto(producto);
 				}
 				
 			}
@@ -176,7 +176,7 @@ public class CargaDeDatos {
 	}
 
 	
-	private Clase buscarClase(String idClase) {
+	private Clase buscarClase(String idClase, String clase) {
 		Clase oClase;
 		if (clases.pertenece(idClase)==true) {
 			
@@ -184,7 +184,7 @@ public class CargaDeDatos {
 		
 		}
 		else {
-			oClase=new Clase(idClase);
+			oClase=new Clase(idClase,clase);
 		}
 		return oClase;
 	}

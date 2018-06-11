@@ -238,4 +238,37 @@ public class Reportes {
 			
 		}
 	}
+	
+	
+	public void reporte4() {
+
+		HashTable<String, Clase> clases = cargaDeDatos.getClases();
+
+		Iterator<Clase> iteratorClase = clases.iterator();
+
+		MyHeap<Integer, Clase> heapClase = new HeapImpl<>(clases.size(),1);
+		
+
+		while (iteratorClase.hasNext() == true) {
+			Clase oClase = iteratorClase.next();
+
+			int clave = oClase.getpHabilitadosClase().size();
+			
+			heapClase.insert(clave, oClase);
+		}
+		
+		for (int i=0; i<10; i++) {
+			Clase clase;
+			try {
+				clase = heapClase.findAndDelete();
+				System.out.println("Clase:  " + clase.getNombre()+ "  " + "Pais:  " + clase.getPaisClase().getNombre()+ "   " + "Cant productos: " + clase.getpHabilitadosClase().size() );
+			} catch (HeapVacio e) {
+				
+			}
+			
+		}
+	}
+	
+	
+	
 }

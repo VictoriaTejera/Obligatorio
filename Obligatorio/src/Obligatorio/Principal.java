@@ -15,7 +15,7 @@ public class Principal {
 		//System.out.println("");
 		//reporte.reporte1();
 		//System.out.println("-----------------------------------------------------------------------------------");
-		reporte.reporte2();
+		reporte.reporte4();
 		
 		
 	
