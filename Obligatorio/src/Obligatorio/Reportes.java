@@ -221,7 +221,7 @@ public class Reportes {
 		while (iteratorMarca.hasNext() == true) {
 			Marca oMarca = iteratorMarca.next();
 			for (int i = 0; i < oMarca.getPaisesMarca().size(); i++) {
-			//	Pais oPais=oMarca.getPaisesMarca().get(i);
+			
 				int clave;
 				try {
 					
