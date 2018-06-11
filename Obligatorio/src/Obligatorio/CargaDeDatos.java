@@ -9,7 +9,6 @@ import java.util.Scanner;
 import java.io.InputStreamReader;
 import java.io.FileInputStream;
 
-
 import uy.edu.um.prog2.adt.Hash.ElementoYaExistenteException;
 import uy.edu.um.prog2.adt.Hash.HashCerrado;
 import uy.edu.um.prog2.adt.Hash.HashTable;
@@ -28,25 +27,20 @@ public class CargaDeDatos {
 	HashTable<String, Empresa> empresas;
 	HashTable<String, Marca> marcas;
 
-
 	public CargaDeDatos() {
 		productos = new HashCerrado(60000, true);
 		paises = new HashCerrado(100, true);
 		clases = new HashCerrado(800, true);
-		empresas = new HashCerrado(1400,true);
-		marcas = new HashCerrado(1400,true);
-	
+		empresas = new HashCerrado(1400, true);
+		marcas = new HashCerrado(1400, true);
+
 	}
-	
-	
 
 	public void cargar(String archivo) throws ElementoYaExistenteException, IOException {
-		
 
-		BufferedReader b = new BufferedReader(new InputStreamReader(new FileInputStream(archivo+".csv"), "UTF-8"));
+		BufferedReader b = new BufferedReader(new InputStreamReader(new FileInputStream(archivo + ".csv"), "UTF-8"));
 
 		String readLine = "";
-
 
 		String[] fields;
 		String nombre;
@@ -61,19 +55,18 @@ public class CargaDeDatos {
 		String estado = null;
 		String ruc;
 		String nroHabilitacion = null;
-		String clave; 
-	
+		String clave;
 
 		Empresa oEmpresa;
-		Marca oMarca= null;
+		Marca oMarca = null;
 		Pais oPais;
 		LinkedList<Rubro> oRubro;
 		Clase oClase;
-		Producto producto = null; 
+		Producto producto = null;
 		b.readLine();
-		
+
 		while ((readLine = b.readLine()) != null) {
-			readLine=readLine.substring(1,readLine.length()-1);
+			readLine = readLine.substring(1, readLine.length() - 1);
 			fields = readLine.split("\";\"");
 			nombre = String.valueOf(fields[0]);
 			nombreFantasia = String.valueOf(fields[1]);
@@ -87,46 +80,43 @@ public class CargaDeDatos {
 			pais = String.valueOf(fields[13]);
 			estado = String.valueOf(fields[20]);
 			ruc = String.valueOf(fields[23]);
-			
-			
-			
-			oEmpresa = buscarEmpresa(empresa,ruc);
+
+			oEmpresa = buscarEmpresa(empresa, ruc);
 			oPais = buscarPais(pais);
 			oMarca = buscarMarca(marca);
-			oClase = buscarClase(idClase,clase);
+			oClase = buscarClase(idClase, clase);
 			oRubro = (LinkedList<Rubro>) getRubro(rubro);
-			
-			
+
 			oClase.setPaisClase(oPais);
-			
+
 			clave = idProd + nroHabilitacion + nombre;
-	
+
 			producto = new Producto(nombre, nombreFantasia, estado, oClase, oPais, oMarca, oEmpresa, oRubro);
 
 			productos.insertar(clave, producto);
-					
+
 			agregarALaLista(oEmpresa);
 			agregarALaLista(oMarca);
 			agregarALaLista(oPais);
 			agregarALaLista(oRubro);
 			agregarALaLista(oClase);
-			
+
 			if (estado.equals("HABILITADO")) {
 				oEmpresa.addProducto(producto);
 				oMarca.addProducto(producto);
 				oClase.addProducto(producto);
 				oPais.addProducto(producto);
-				}
 				
-			oMarca.addPais(oPais);
-			
+				if (oMarca.getPaisesMarca().isOnList(oPais) == false) {
+					oMarca.addPais(oPais);
+				}
 			}
 
 		
+		}
 
 		b.close();
 	}
-
 
 	private List<Rubro> getRubro(String rubro) {
 
@@ -138,106 +128,95 @@ public class CargaDeDatos {
 		}
 		return (LinkedList<Rubro>) lista;
 	}
-	
+
 	private Empresa buscarEmpresa(String empresa, String ruc) {
 		Empresa oEmpresa;
-		if (empresas.pertenece(ruc)==true) {
-			
-		oEmpresa=empresas.obtener(ruc);
-		
-		}
-		else {
-			oEmpresa=new Empresa(empresa,ruc);
+		if (empresas.pertenece(ruc) == true) {
+
+			oEmpresa = empresas.obtener(ruc);
+
+		} else {
+			oEmpresa = new Empresa(empresa, ruc);
 		}
 		return oEmpresa;
 	}
-	
+
 	private Marca buscarMarca(String marca) {
 		Marca oMarca;
-		if (marcas.pertenece(marca)==true) { 
-			oMarca=marcas.obtener(marca);
-		}
-		else {
-			oMarca=new Marca(marca);
+		if (marcas.pertenece(marca) == true) {
+			oMarca = marcas.obtener(marca);
+		} else {
+			oMarca = new Marca(marca);
 		}
 		return oMarca;
-		
+
 	}
-	
+
 	private Pais buscarPais(String pais) {
 		Pais oPais;
-		if (paises.pertenece(pais)==true) {
-			
-		oPais=paises.obtener(pais);
-		
-		}
-		else {
-			oPais=new Pais(pais);
+		if (paises.pertenece(pais) == true) {
+
+			oPais = paises.obtener(pais);
+
+		} else {
+			oPais = new Pais(pais);
 		}
 		return oPais;
 	}
 
-	
 	private Clase buscarClase(String idClase, String clase) {
 		Clase oClase;
-		if (clases.pertenece(idClase)==true) {
-			
-		oClase=clases.obtener(idClase);
-		
-		}
-		else {
-			oClase=new Clase(idClase,clase);
+		if (clases.pertenece(idClase) == true) {
+
+			oClase = clases.obtener(idClase);
+
+		} else {
+			oClase = new Clase(idClase, clase);
 		}
 		return oClase;
 	}
-	
+
 	private void agregarALaLista(Object objeto) throws ElementoYaExistenteException {
-		
-		
+
 		if (objeto instanceof Empresa) {
 			String objClave = ((Empresa) objeto).getRuc();
-			
-			
+
 			if (!empresas.pertenece(objClave)) {
 				empresas.insertar(objClave, (Empresa) objeto);
 			}
-		
-			
-			
+
 		}
 		if (objeto instanceof Clase) {
-			String nombreClave= ((Clase) objeto).getNombre();
+			String nombreClave = ((Clase) objeto).getNombre();
 			if (clases != null) {
-				if(clases.pertenece(nombreClave)==false) {
+				if (clases.pertenece(nombreClave) == false) {
 					clases.insertar(nombreClave, (Clase) objeto);
-					
+
 				}
 
 			}
 		}
-		if(objeto instanceof Pais) {
-			String nombreClave= ((Pais) objeto).getNombre();
-			if(paises!=null) {
-				if(paises.pertenece(nombreClave)==false) {
-					paises.insertar(nombreClave, (Pais)objeto);
-					
-				}
-			}
-		}
-		if(objeto instanceof Marca) {
-			String nombreClave= ((Marca) objeto).getNombre();
-			if(marcas!=null) {
-				if(marcas.pertenece(nombreClave)==false) {
-					marcas.insertar(nombreClave, (Marca)objeto);
-					
-				}
-			}
-		}
-	
-	
+		if (objeto instanceof Pais) {
+			String nombreClave = ((Pais) objeto).getNombre();
+			if (paises != null) {
+				if (paises.pertenece(nombreClave) == false) {
+					paises.insertar(nombreClave, (Pais) objeto);
 
-	
+				}
+			}
+		}
+		if (objeto instanceof Marca) {
+			String nombreClave = ((Marca) objeto).getNombre();
+			if (marcas != null) {
+				if (marcas.pertenece(nombreClave) == false) {
+					marcas.insertar(nombreClave, (Marca) objeto);
+
+				}
+			}
+		}
+
 	}
+
 	public HashTable<String, Producto> getProductos() {
 		return productos;
 	}
@@ -273,7 +252,5 @@ public class CargaDeDatos {
 	public HashTable<String, Marca> getMarcas() {
 		return marcas;
 	}
-	
-	
 
 }

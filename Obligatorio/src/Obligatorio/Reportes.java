@@ -154,38 +154,38 @@ public class Reportes {
 	 * } } }
 	 */
 
-//	public void marcasPorPais(Pais oPais) {
-//
-//		MyPriotityQueue<Marca> priorityQueue = new PriorityQueue<>();
-//
-//		int clave = 0;
-//
-//		int tamano = oPais.getmarcasPais().size();
-//
-//		for (int i = 0; i < oPais.getmarcasPais().size(); i++) {
-//
-//			try {
-//
-//				clave = oPais.getmarcasPais().get(i).getpHabilitados().size();
-//				priorityQueue.insert(oPais.getmarcasPais().get(i), clave);
-//			} catch (PosInvalida e) {
-//
-//			}
-//
-//		}
-//
-//		for (int i = 0; i < 10; i++) {
-//			try {
-//
-//				oPais.agregarMarcaP(priorityQueue.getFirst());
-//				priorityQueue.dequeue();
-//
-//			} catch (EmptyQueueException e) {
-//
-//			}
-//		}
-//
-//	}
+	// public void marcasPorPais(Pais oPais) {
+	//
+	// MyPriotityQueue<Marca> priorityQueue = new PriorityQueue<>();
+	//
+	// int clave = 0;
+	//
+	// int tamano = oPais.getmarcasPais().size();
+	//
+	// for (int i = 0; i < oPais.getmarcasPais().size(); i++) {
+	//
+	// try {
+	//
+	// clave = oPais.getmarcasPais().get(i).getpHabilitados().size();
+	// priorityQueue.insert(oPais.getmarcasPais().get(i), clave);
+	// } catch (PosInvalida e) {
+	//
+	// }
+	//
+	// }
+	//
+	// for (int i = 0; i < 10; i++) {
+	// try {
+	//
+	// oPais.agregarMarcaP(priorityQueue.getFirst());
+	// priorityQueue.dequeue();
+	//
+	// } catch (EmptyQueueException e) {
+	//
+	// }
+	// }
+	//
+	// }
 
 	// public void reporte2() {
 	//
@@ -211,80 +211,74 @@ public class Reportes {
 	// }
 
 	public void reporte2() {
-		
 		MyPriotityQueue<Marca> priorityQueueMarca = new PriorityQueue<>();
 		MyPriotityQueue<Pais> priorityQueuePais = new PriorityQueue<>();
-
 
 		HashTable<String, Marca> marcas = cargaDeDatos.getMarcas();
 
 		Iterator<Marca> iteratorMarca = marcas.iterator();
-		
 
 		while (iteratorMarca.hasNext() == true) {
 			Marca oMarca = iteratorMarca.next();
-			for (int i=0; i<oMarca.getPaisesMarca().size();i++) {
-			int clave;
-			try {
-				clave = oMarca.getPaisesMarca().get(i).getProdHablitados().size();
-				priorityQueueMarca.insert(oMarca,clave);
-				priorityQueuePais.insert(oMarca.getPaisesMarca().get(i),clave);
-			} catch (PosInvalida e) {
-			
+			for (int i = 0; i < oMarca.getPaisesMarca().size(); i++) {
+			//	Pais oPais=oMarca.getPaisesMarca().get(i);
+				int clave;
+				try {
+					
+					
+					clave = oMarca.getPaisesMarca().get(i).getProdHablitados().size();
+					priorityQueueMarca.insert(oMarca, clave);
+					priorityQueuePais.insert(oMarca.getPaisesMarca().get(i), clave);
+				} catch (PosInvalida e) {
+
+				}
 			}
-			
+
 		}
-			
-		}
-		for (int i=0; i<10; i++) {
+		for (int i = 0; i < 10; i++) {
 			Marca marca;
 			Pais pais;
-				try {
-					System.out.println( "Pais:  " + priorityQueuePais.getFirst().getNombre() +"  Marca:  " + priorityQueueMarca.getFirst().getNombre()+ "  " +  "Cant productos: " + priorityQueuePais.getFirst().getProdHablitados().size() );
-					priorityQueueMarca.dequeue();
-					priorityQueuePais.dequeue();
-				
-				} catch (EmptyQueueException e) {
-				
-					
-				}
-			
-				
-			
-			
+			try {
+				System.out.println("Pais:  " + priorityQueuePais.getFirst().getNombre() + "  Marca:  "
+						+ priorityQueueMarca.getFirst().getNombre() + "  " + "Cant productos: "
+						+ priorityQueuePais.getFirst().getProdHablitados().size());
+				priorityQueueMarca.dequeue();
+				priorityQueuePais.dequeue();
+
+			} catch (EmptyQueueException e) {
+
+			}
+
 		}
 	}
-	
-	
+
 	public void reporte4() {
 
 		HashTable<String, Clase> clases = cargaDeDatos.getClases();
 
 		Iterator<Clase> iteratorClase = clases.iterator();
 
-		MyHeap<Integer, Clase> heapClase = new HeapImpl<>(clases.size(),1);
-		
+		MyHeap<Integer, Clase> heapClase = new HeapImpl<>(clases.size(), 1);
 
 		while (iteratorClase.hasNext() == true) {
 			Clase oClase = iteratorClase.next();
 
 			int clave = oClase.getpHabilitadosClase().size();
-			
+
 			heapClase.insert(clave, oClase);
 		}
-		
-		for (int i=0; i<10; i++) {
+
+		for (int i = 0; i < 10; i++) {
 			Clase clase;
 			try {
 				clase = heapClase.findAndDelete();
-				System.out.println("Clase:  " + clase.getNombre()+ "  " + "Pais:  " + clase.getPaisClase().getNombre()+ "   " + "Cant productos: " + clase.getpHabilitadosClase().size() );
+				System.out.println("Clase:  " + clase.getNombre() + "  " + "Pais:  " + clase.getPaisClase().getNombre()
+						+ "   " + "Cant productos: " + clase.getpHabilitadosClase().size());
 			} catch (HeapVacio e) {
-				
+
 			}
-			
+
 		}
 	}
-	
-	
-	
+
 }
