@@ -7,6 +7,7 @@ public class Marca {
 
 	private String nombre;
 	private List<Producto> pHabilitados;
+	private Pais paisMarca;
 	
 	
 	public void addProducto(Producto nombre) {
@@ -37,6 +38,14 @@ public class Marca {
 			equal=true;
 		}
 		return equal;
+	}
+
+	public Pais getPaisMarca() {
+		return paisMarca;
+	}
+
+	public void setPaisMarca(Pais paisMarca) {
+		this.paisMarca = paisMarca;
 	}
 
 }

@@ -10,4 +10,5 @@ public interface HashTable<K,T> extends Iterable<T> {
 	public void borrar (K clave)throws ClaveInvalida;
 	public T obtener(K key);
 	public Iterator iterator();
+	public int size();
 }

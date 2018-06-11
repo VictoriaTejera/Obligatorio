@@ -13,6 +13,7 @@ public class HashCerrado<K, T> implements HashTable<K, T> {
 	private int size;
 	private int cantElementos;
 	private boolean resolucionLineal;
+	
 
 	public HashCerrado(int sizeInicial, boolean resolucionLineal) {
 		vector = new NodoHash[sizeInicial];
@@ -214,6 +215,12 @@ public class HashCerrado<K, T> implements HashTable<K, T> {
 	public Iterator<T> iterator() {
 		
 		return new MyIterator<K,T>(vector);
+	}
+
+	@Override
+	public int size() {
+		
+		return size;
 	}
 
 	

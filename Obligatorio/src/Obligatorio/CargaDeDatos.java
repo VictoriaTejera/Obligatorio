@@ -97,6 +97,8 @@ public class CargaDeDatos {
 			oRubro = (LinkedList<Rubro>) getRubro(rubro);
 			
 			
+			oMarca.setPaisMarca(oPais);
+			
 			clave = idProd + nroHabilitacion + nombre;
 	
 			producto = new Producto(nombre, nombreFantasia, estado, oClase, oPais, oMarca, oEmpresa, oRubro);
@@ -112,7 +114,8 @@ public class CargaDeDatos {
 			if (estado.equals("HABILITADO")) {
 				oEmpresa.addProducto(producto);
 				oMarca.addProducto(producto);
-				oPais.agregarMarcaP(oMarca);
+				if(oPais.getmarcasPais().isOnList(oMarca)==false) {
+				oPais.agregarAMarcas(oMarca);}
 				}
 				
 			}
@@ -156,6 +159,7 @@ public class CargaDeDatos {
 			oMarca=new Marca(marca);
 		}
 		return oMarca;
+		
 	}
 	
 	private Pais buscarPais(String pais) {
