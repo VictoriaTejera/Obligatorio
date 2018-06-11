@@ -97,7 +97,6 @@ public class CargaDeDatos {
 			oRubro = (LinkedList<Rubro>) getRubro(rubro);
 			
 			
-			oMarca.setPaisMarca(oPais);
 			oClase.setPaisClase(oPais);
 			
 			clave = idProd + nroHabilitacion + nombre;
@@ -116,8 +115,11 @@ public class CargaDeDatos {
 				oEmpresa.addProducto(producto);
 				oMarca.addProducto(producto);
 				oClase.addProducto(producto);
+				oPais.addProducto(producto);
 				}
 				
+			oMarca.addPais(oPais);
+			
 			}
 
 		

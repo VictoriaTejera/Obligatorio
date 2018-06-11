@@ -8,13 +8,17 @@ public class Pais {
 
 	private String nombre;
 
-	private List<Producto> prodHablitados;
+	private List<Producto> prodHabilitados;
 
 	public Pais(String nombre) {
 		this.nombre = nombre;
 
 		prodHabilitados = new LinkedList();
 
+	}	
+	
+	public void addProducto(Producto producto) {
+		prodHabilitados.add(producto);
 	}
 
 	public void setNombre(String nombre) {
@@ -33,12 +37,14 @@ public class Pais {
 		return equal;
 	}
 
-	public List<Marca> getMarcasPhabilitados() {
-		return marcasPhabilitados;
+	
+
+	public List<Producto> getProdHablitados() {
+		return prodHabilitados;
 	}
 
-	public void setMarcasPhabilitados(List<Marca> marcasPhabilitados) {
-		this.marcasPhabilitados = marcasPhabilitados;
+	public void setProdHablitados(List<Producto> prodHablitados) {
+		this.prodHabilitados = prodHabilitados;
 	}
 
 	/*

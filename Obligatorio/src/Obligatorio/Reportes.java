@@ -211,30 +211,46 @@ public class Reportes {
 	// }
 
 	public void reporte2() {
+		
+		MyPriotityQueue<Marca> priorityQueueMarca = new PriorityQueue<>();
+		MyPriotityQueue<Pais> priorityQueuePais = new PriorityQueue<>();
+
 
 		HashTable<String, Marca> marcas = cargaDeDatos.getMarcas();
 
 		Iterator<Marca> iteratorMarca = marcas.iterator();
-
-		MyHeap<Integer, Marca> heapMarcas = new HeapImpl<>(marcas.size(),1);
 		
 
 		while (iteratorMarca.hasNext() == true) {
 			Marca oMarca = iteratorMarca.next();
-
-			int clave = oMarca.getpHabilitados().size();
+			for (int i=0; i<oMarca.getPaisesMarca().size();i++) {
+			int clave;
+			try {
+				clave = oMarca.getPaisesMarca().get(i).getProdHablitados().size();
+				priorityQueueMarca.insert(oMarca,clave);
+				priorityQueuePais.insert(oMarca.getPaisesMarca().get(i),clave);
+			} catch (PosInvalida e) {
 			
-			heapMarcas.insert(clave, oMarca);
+			}
+			
 		}
-		
+			
+		}
 		for (int i=0; i<10; i++) {
 			Marca marca;
-			try {
-				marca = heapMarcas.findAndDelete();
-				System.out.println("Marca:  " + marca.getNombre()+ "  " + "Pais:  " + marca.getPaisMarca().getNombre()+ "   " + "Cant productos: " + marca.getpHabilitados().size() );
-			} catch (HeapVacio e) {
+			Pais pais;
+				try {
+					System.out.println( "Pais:  " + priorityQueuePais.getFirst().getNombre() +"  Marca:  " + priorityQueueMarca.getFirst().getNombre()+ "  " +  "Cant productos: " + priorityQueuePais.getFirst().getProdHablitados().size() );
+					priorityQueueMarca.dequeue();
+					priorityQueuePais.dequeue();
 				
-			}
+				} catch (EmptyQueueException e) {
+				
+					
+				}
+			
+				
+			
 			
 		}
 	}
