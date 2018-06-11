@@ -167,7 +167,6 @@ public void marcasPorPais(Pais oPais) {
 		
 		MyPriotityQueue<Marca> priorityQueue=new PriorityQueue<>();
 	
-		List<Marca> marcasMasPhabilitados = oPais.getmarcasPais();
 			
 		int clave=0;
 			
