@@ -27,8 +27,7 @@ public class CargaDeDatos {
 	HashTable<String, Clase> clases;
 	HashTable<String, Empresa> empresas;
 	HashTable<String, Marca> marcas;
-	
-	
+
 
 	public CargaDeDatos() {
 		productos = new HashCerrado(60000, true);
@@ -66,7 +65,7 @@ public class CargaDeDatos {
 	
 
 		Empresa oEmpresa;
-		Marca oMarca;
+		Marca oMarca= null;
 		Pais oPais;
 		LinkedList<Rubro> oRubro;
 		Clase oClase;
@@ -113,15 +112,16 @@ public class CargaDeDatos {
 			if (estado.equals("HABILITADO")) {
 				oEmpresa.addProducto(producto);
 				oMarca.addProducto(producto);
-				oPais.agregarAMarcas(oMarca);
+				oPais.agregarMarcaP(oMarca);
+				}
 				
 			}
 
-		}
+		
 
 		b.close();
-
 	}
+
 
 	private List<Rubro> getRubro(String rubro) {
 

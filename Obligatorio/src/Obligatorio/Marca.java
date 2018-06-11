@@ -8,6 +8,7 @@ public class Marca {
 	private String nombre;
 	private List<Producto> pHabilitados;
 	
+	
 	public void addProducto(Producto nombre) {
 		pHabilitados.add(nombre);
 	}
@@ -23,6 +24,7 @@ public class Marca {
 	public Marca(String nombre) {
 		this.nombre = nombre;
 		pHabilitados = new LinkedList();
+		
 	}
 
 	public String getNombre() {
@@ -36,4 +38,5 @@ public class Marca {
 		}
 		return equal;
 	}
+
 }
