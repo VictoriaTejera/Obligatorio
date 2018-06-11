@@ -10,12 +10,14 @@ public class Marca {
 
 	private String nombre;
 	private List<Producto> pHabilitados;
-	List<Pais> paisesMarca;
+	//List<Pais> paisesMarca;
+	HashTable <Pais, Reporte2> cantPais;
+	
 	
 	
 	
 	public void addPais(Pais pais) {
-			paisesMarca.add(pais);
+			//paisesMarca.add(pais);
 	}
 	
 	public void addProducto(Producto nombre) {
@@ -33,7 +35,17 @@ public class Marca {
 	public Marca(String nombre) {
 		this.nombre = nombre;
 		pHabilitados = new LinkedList();
-		paisesMarca = new LinkedList();
+		//paisesMarca = new LinkedList();
+		cantPais = new HashCerrado(500,true);
+	}
+
+
+	public HashTable<Pais,Reporte2> getCantPais() {
+		return cantPais;
+	}
+
+	public void setCantPais(HashTable<Pais,Reporte2> cantPais) {
+		this.cantPais = cantPais;
 	}
 
 	public String getNombre() {
@@ -48,13 +60,13 @@ public class Marca {
 		return equal;
 	}
 
-	public List<Pais> getPaisesMarca() {
-		return paisesMarca;
-	}
-
-	public void setPaisesMarca(List<Pais> paisesMarca) {
-		this.paisesMarca = paisesMarca;
-	}
+//	public List<Pais> getPaisesMarca() {
+//		return paisesMarca;
+//	}
+//
+//	public void setPaisesMarca(List<Pais> paisesMarca) {
+//		this.paisesMarca = paisesMarca;
+//	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

@@ -107,9 +107,17 @@ public class CargaDeDatos {
 				oClase.addProducto(producto);
 				oPais.addProducto(producto);
 				
-				if (oMarca.getPaisesMarca().isOnList(oPais) == false) {
-					oMarca.addPais(oPais);
+				//if (oMarca.getPaisesMarca().isOnList(oPais) == false) {
+					//oMarca.addPais(oPais);
+				//}
+				try {
+				
+				Reporte2 paisCantidad = new Reporte2(oPais);
+				oMarca.getCantPais().insertar(oPais, paisCantidad);
+				} catch (Exception e) { 
+					oMarca.getCantPais().obtener(oPais).agregarCant();
 				}
+				
 			}
 
 		

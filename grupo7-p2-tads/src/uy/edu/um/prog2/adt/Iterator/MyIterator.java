@@ -15,10 +15,13 @@ public class MyIterator<K,T> implements Iterator<T> {
 		
 		vectorHash=vector;
 		
-		while(vectorHash[posicion]==null  || vectorHash[posicion].isEliminado()) {
+		while(vectorHash[posicion]==null  || vectorHash[posicion].isEliminado() && posicion<vector.length-1) {
 			posicion++;
 		}
-
+		
+		if (posicion == vector.length-1 && (vector[posicion] == null || vector [posicion].isEliminado())){
+			posicion = 0 ;
+		}	
 	}
 
 	

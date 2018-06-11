@@ -212,7 +212,7 @@ public class Reportes {
 
 	public void reporte2() {
 		MyPriotityQueue<Marca> priorityQueueMarca = new PriorityQueue<>();
-		MyPriotityQueue<Pais> priorityQueuePais = new PriorityQueue<>();
+		MyPriotityQueue<Reporte2> priorityQueueReporte2 = new PriorityQueue<>();
 
 		HashTable<String, Marca> marcas = cargaDeDatos.getMarcas();
 
@@ -220,30 +220,23 @@ public class Reportes {
 
 		while (iteratorMarca.hasNext() == true) {
 			Marca oMarca = iteratorMarca.next();
-			for (int i = 0; i < oMarca.getPaisesMarca().size(); i++) {
-			
-				int clave;
-				try {
-					
-					
-					clave = oMarca.getPaisesMarca().get(i).getProdHablitados().size();
-					priorityQueueMarca.insert(oMarca, clave);
-					priorityQueuePais.insert(oMarca.getPaisesMarca().get(i), clave);
-				} catch (PosInvalida e) {
-
-				}
+			HashTable<Pais, Reporte2> cantPais = oMarca.getCantPais();
+			Iterator<Reporte2> iteratorReporte2 = cantPais.iterator();
+			while (iteratorReporte2.hasNext()==true) {
+				Reporte2 oReporte2 = iteratorReporte2.next();
+				priorityQueueMarca.insert(oMarca,oReporte2.getCantProd());
+				priorityQueueReporte2.insert(oReporte2,oReporte2.getCantProd());
 			}
-
 		}
 		for (int i = 0; i < 10; i++) {
 			Marca marca;
 			Pais pais;
 			try {
-				System.out.println("Pais:  " + priorityQueuePais.getFirst().getNombre() + "  Marca:  "
+				System.out.println("Pais:  " + priorityQueueReporte2.getFirst().getPais().getNombre() + "  Marca:  "
 						+ priorityQueueMarca.getFirst().getNombre() + "  " + "Cant productos: "
-						+ priorityQueuePais.getFirst().getProdHablitados().size());
+						+ priorityQueueReporte2.getFirst().getCantProd());
 				priorityQueueMarca.dequeue();
-				priorityQueuePais.dequeue();
+				priorityQueueReporte2.dequeue();
 
 			} catch (EmptyQueueException e) {
 
