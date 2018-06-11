@@ -154,38 +154,38 @@ public class Reportes {
 	 * } } }
 	 */
 
-	public void marcasPorPais(Pais oPais) {
-
-		MyPriotityQueue<Marca> priorityQueue = new PriorityQueue<>();
-
-		int clave = 0;
-
-		int tamano = oPais.getmarcasPais().size();
-
-		for (int i = 0; i < oPais.getmarcasPais().size(); i++) {
-
-			try {
-
-				clave = oPais.getmarcasPais().get(i).getpHabilitados().size();
-				priorityQueue.insert(oPais.getmarcasPais().get(i), clave);
-			} catch (PosInvalida e) {
-
-			}
-
-		}
-
-		for (int i = 0; i < 10; i++) {
-			try {
-
-				oPais.agregarMarcaP(priorityQueue.getFirst());
-				priorityQueue.dequeue();
-
-			} catch (EmptyQueueException e) {
-
-			}
-		}
-
-	}
+//	public void marcasPorPais(Pais oPais) {
+//
+//		MyPriotityQueue<Marca> priorityQueue = new PriorityQueue<>();
+//
+//		int clave = 0;
+//
+//		int tamano = oPais.getmarcasPais().size();
+//
+//		for (int i = 0; i < oPais.getmarcasPais().size(); i++) {
+//
+//			try {
+//
+//				clave = oPais.getmarcasPais().get(i).getpHabilitados().size();
+//				priorityQueue.insert(oPais.getmarcasPais().get(i), clave);
+//			} catch (PosInvalida e) {
+//
+//			}
+//
+//		}
+//
+//		for (int i = 0; i < 10; i++) {
+//			try {
+//
+//				oPais.agregarMarcaP(priorityQueue.getFirst());
+//				priorityQueue.dequeue();
+//
+//			} catch (EmptyQueueException e) {
+//
+//			}
+//		}
+//
+//	}
 
 	// public void reporte2() {
 	//
