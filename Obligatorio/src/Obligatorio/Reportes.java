@@ -57,11 +57,12 @@ public class Reportes {
 			priorityQueue.insert(oEmpresa, clave);
 
 		}
-
+		System.out.printf("%-2s%-50s%-5s%-50s\n", "|", "EMPRESA", "|" , "#PHABILITADOS");
 		for (int i = 0; i < 20; i++) {
 			try {
-				System.out.println(
-						"EMPRESA:  " + priorityQueue.getFirst().getNombre() + " - #PHABILITADOS: " + priorityQueue.getFirst().getpHabilitados().size());
+				System.out.printf("%-2s%-50s%-5s%-50s\n", "|", priorityQueue.getFirst().getNombre(), "|", priorityQueue.getFirst().getpHabilitados().size() );
+				//System.out.println(
+						//"EMPRESA:  " + priorityQueue.getFirst().getNombre() + " - #PHABILITADOS: " + priorityQueue.getFirst().getpHabilitados().size());
 
 				priorityQueue.dequeue();
 
@@ -95,13 +96,16 @@ public class Reportes {
 				priorityQueuePaisAux.insert(oPaisAux, oPaisAux.getCantProd());
 			}
 		}
+		System.out.printf("%-2s%-50s%-5s%-50s%-5s%-50s\n", "|", "PAIS", "|" , "MARCA", "|", "#PHABILITADOS");
 		for (int i = 0; i < 10; i++) {
 			Marca marca;
 			Pais pais;
 			try {
-				System.out.println("PAIS:  " + priorityQueuePaisAux.getFirst().getPais().getNombre() + " - MARCA:  "
-						+ priorityQueueMarca.getFirst().getNombre() + " - #PHABILITADOS: "
-						+ priorityQueuePaisAux.getFirst().getCantProd());
+				System.out.printf("%-2s%-50s%-5s%-50s%-5s%-50s\n", "|", priorityQueuePaisAux.getFirst().getPais().getNombre(), "|" ,priorityQueueMarca.getFirst().getNombre() , "|", priorityQueuePaisAux.getFirst().getCantProd() );
+				
+				//System.out.println("PAIS:  " + priorityQueuePaisAux.getFirst().getPais().getNombre() + " - MARCA:  "
+					//	+ priorityQueueMarca.getFirst().getNombre() + " - #PHABILITADOS: "
+						//+ priorityQueuePaisAux.getFirst().getCantProd());
 				priorityQueueMarca.dequeue();
 				priorityQueuePaisAux.dequeue();
 
