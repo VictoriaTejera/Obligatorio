@@ -1,6 +1,7 @@
 package Obligatorio;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -100,12 +101,53 @@ public class Reportes {
 				priorityQueuePaisAux.dequeue();
 
 			} catch (EmptyQueueException e) {
-System.out.println("COLA VACIA");
+				System.out.println("COLA VACIA");
 			}
 
 		}
 	}
+	
+	public void reporte3() {
+		
+		MyPriotityQueue<Pais> priorityQueue = new PriorityQueue<>();
 
+		HashTable<String, Pais> paises = cargaDeDatos.getPaises();
+
+		Iterator<Pais> iteratorPais = paises.iterator();
+		int clave = 0;
+		double pHabTotal=0;
+		double porcentaje = 0;
+		
+		
+		while (iteratorPais.hasNext() == true) {
+
+			Pais oPais = iteratorPais.next();
+			clave = oPais.getProdHablitados().size();
+			pHabTotal = pHabTotal + clave;
+			priorityQueue.insert(oPais, clave);
+			
+		}
+
+		for (int i = 0; i < 10; i++) {
+			try {
+				clave = priorityQueue.getFirst().getProdHablitados().size();
+				
+				porcentaje = ((clave*100)/(pHabTotal));
+				DecimalFormat df = new DecimalFormat("0,00%");
+				String porcStr = df.format(porcentaje);
+				System.out.println(
+						"PAIS:  " + priorityQueue.getFirst().getNombre() + " CANTIDAD:  " + priorityQueue.getFirst().getProdHablitados().size() + " PORCENTAJE: " + porcStr + " ");
+
+				priorityQueue.dequeue();
+
+			} catch (EmptyQueueException e) {
+
+			}
+		}
+
+	}
+	
+	
 	public void reporte4() {
 
 		HashTable<String, Clase> clases = cargaDeDatos.getClases();
