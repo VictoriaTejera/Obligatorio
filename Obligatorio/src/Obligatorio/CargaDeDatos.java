@@ -106,13 +106,9 @@ public class CargaDeDatos {
 				oMarca.addProducto(producto);
 				oClase.addProducto(producto);
 				oPais.addProducto(producto);
-				
-				
 				oMarca.buscarReporte2(oPais).agregarCant();
 				
 			}
-
-		
 		}
 
 		b.close();
