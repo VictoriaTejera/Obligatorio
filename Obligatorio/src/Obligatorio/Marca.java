@@ -11,7 +11,7 @@ public class Marca {
 	private String nombre;
 	private List<Producto> pHabilitados;
 	//List<Pais> paisesMarca;
-	HashTable <Pais, Reporte2> cantPais;
+	HashTable <Pais, PaisAux> cantPais;
 	
 	
 	
@@ -39,12 +39,33 @@ public class Marca {
 		cantPais = new HashCerrado(500,true);
 	}
 
+	public PaisAux buscarReporte2(Pais pais) {
+	
+		PaisAux oReporte2;
+		if (cantPais.pertenece(pais) == true) {
 
-	public HashTable<Pais,Reporte2> getCantPais() {
+			oReporte2 = cantPais.obtener(pais);
+
+		} else {
+			oReporte2 = new PaisAux(pais);
+			try {
+				cantPais.insertar(pais,oReporte2);
+			} catch (ElementoYaExistenteException e) {
+				
+			}
+		}
+		
+		return oReporte2;
+	}
+	
+	
+	
+	
+	public HashTable<Pais,PaisAux> getCantPais() {
 		return cantPais;
 	}
 
-	public void setCantPais(HashTable<Pais,Reporte2> cantPais) {
+	public void setCantPais(HashTable<Pais,PaisAux> cantPais) {
 		this.cantPais = cantPais;
 	}
 

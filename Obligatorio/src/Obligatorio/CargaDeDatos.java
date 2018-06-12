@@ -32,7 +32,7 @@ public class CargaDeDatos {
 		paises = new HashCerrado(100, true);
 		clases = new HashCerrado(800, true);
 		empresas = new HashCerrado(1400, true);
-		marcas = new HashCerrado(1400, true);
+		marcas = new HashCerrado(140000, true);
 
 	}
 
@@ -107,16 +107,8 @@ public class CargaDeDatos {
 				oClase.addProducto(producto);
 				oPais.addProducto(producto);
 				
-				//if (oMarca.getPaisesMarca().isOnList(oPais) == false) {
-					//oMarca.addPais(oPais);
-				//}
-				try {
 				
-				Reporte2 paisCantidad = new Reporte2(oPais);
-				oMarca.getCantPais().insertar(oPais, paisCantidad);
-				} catch (Exception e) { 
-					oMarca.getCantPais().obtener(oPais).agregarCant();
-				}
+				oMarca.buscarReporte2(oPais).agregarCant();
 				
 			}
 
@@ -136,6 +128,8 @@ public class CargaDeDatos {
 		}
 		return (LinkedList<Rubro>) lista;
 	}
+	
+	
 
 	private Empresa buscarEmpresa(String empresa, String ruc) {
 		Empresa oEmpresa;

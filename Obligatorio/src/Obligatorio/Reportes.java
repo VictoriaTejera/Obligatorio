@@ -69,150 +69,10 @@ public class Reportes {
 
 	}
 
-	// public void marcasPorPais(Pais oPais) {
-	//
-	// MyPriotityQueue<Marca> priorityQueue=new PriorityQueue<>();
-	//
-	// HashTable<String, Marca> marcas = cargaDeDatos.getMarcas();
-	//
-	// Iterator<Marca> iteratorMarca = marcas.iterator();
-	//
-	// int clave=0;
-	//
-	// while(iteratorMarca.hasNext()==true) {
-	//
-	// Marca oMarca = iteratorMarca.next();
-	//
-	// clave = oMarca.getpHabilitados().size();
-	//
-	// priorityQueue.insert(oMarca,clave);
-	//
-	// }
-	//
-	// for(int i=0; i<10; i++) {
-	//
-	// try {
-	// oPais.agregarMarcaP(priorityQueue.getFirst());
-	// priorityQueue.dequeue();
-	// } catch (EmptyQueueException e) {
-	//
-	// e.printStackTrace();
-	// }
-	// }
-	// }
-	//
-	// public void reporte2() {
-	//
-	// MyPriotityQueue<Marca> priorityQueue=new PriorityQueue<>();
-	//
-	// HashTable<String, Pais> paises = cargaDeDatos.getPaises();
-	//
-	// Iterator<Pais> iteratorPais = paises.iterator();
-	// int clave=0;
-	// while(iteratorPais.hasNext()==true) {
-	// Pais oPais = iteratorPais.next();
-	// System.out.println("PAIS: " + oPais.getNombre());
-	// marcasPorPais(oPais);
-	// for(int i=0; i<10; i++) {
-	// try {
-	// System.out.println(oPais.getmarcasPais().get(i).getNombre() + " " +
-	// oPais.getmarcasPais().get(i).getpHabilitados().size());
-	// } catch (PosInvalida e) {
-	// System.out.println("Exception: " + e.getMessage());
-	// }
-	// }
-	// }
-	//
-	//
-	// }
-	//
-
-	/*
-	 * public void reporte2() { MyPriotityQueue<Marca> priorityQueue=new
-	 * PriorityQueue<>();
-	 * 
-	 * HashTable<String, Pais> paises = cargaDeDatos.getPaises();
-	 * 
-	 * Iterator<Pais> iteratorPais = paises.iterator(); int clave=0;
-	 * while(iteratorPais.hasNext()==true) { Pais oPais = iteratorPais.next();
-	 * System.out.println("PAIS:  " + oPais.getNombre());
-	 * 
-	 * try { for (int i=0; i<oPais.getmarcasPais().size();i++) { //for (int j=0;
-	 * j<oPais.getmarcasPais().get(i).getpHabilitados().size(); j++) { clave =
-	 * oPais.getmarcasPais().get(i).getpHabilitados().size();
-	 * priorityQueue.insert(oPais.getmarcasPais().get(i), clave); //} } } catch
-	 * (PosInvalida e) {
-	 * 
-	 * } for (int i=0; i<10; i ++) { try {
-	 * System.out.println(priorityQueue.getFirst().getNombre() + " - " +
-	 * priorityQueue.getFirst().getpHabilitados().size());
-	 * 
-	 * priorityQueue.dequeue(); } catch (EmptyQueueException e) {
-	 * 
-	 * }
-	 * 
-	 * } } }
-	 */
-
-	// public void marcasPorPais(Pais oPais) {
-	//
-	// MyPriotityQueue<Marca> priorityQueue = new PriorityQueue<>();
-	//
-	// int clave = 0;
-	//
-	// int tamano = oPais.getmarcasPais().size();
-	//
-	// for (int i = 0; i < oPais.getmarcasPais().size(); i++) {
-	//
-	// try {
-	//
-	// clave = oPais.getmarcasPais().get(i).getpHabilitados().size();
-	// priorityQueue.insert(oPais.getmarcasPais().get(i), clave);
-	// } catch (PosInvalida e) {
-	//
-	// }
-	//
-	// }
-	//
-	// for (int i = 0; i < 10; i++) {
-	// try {
-	//
-	// oPais.agregarMarcaP(priorityQueue.getFirst());
-	// priorityQueue.dequeue();
-	//
-	// } catch (EmptyQueueException e) {
-	//
-	// }
-	// }
-	//
-	// }
-
-	// public void reporte2() {
-	//
-	//// MyPriotityQueue<Marca> priorityQueue=new PriorityQueue<>();
-	//
-	// HashTable<String, Pais> paises = cargaDeDatos.getPaises();
-	//
-	// Iterator<Pais> iteratorPais = paises.iterator();
-	// int clave=0;
-	// while(iteratorPais.hasNext()==true) {
-	// Pais oPais = iteratorPais.next();
-	// System.out.println("PAIS: " + oPais.getNombre());
-	// marcasPorPais(oPais);
-	// for(int i=0; i<10; i++) {
-	// try {
-	// System.out.println(oPais.getMarcasPhabilitados().get(i).getNombre() + " " +
-	// oPais.getMarcasPhabilitados().get(i).getpHabilitados().size());
-	// } catch (PosInvalida e) {
-	// System.out.println("Exception: " + e.getMessage());
-	// }
-	// }
-	// }
-	// }
 
 	public void reporte2() {
 		MyPriotityQueue<Marca> priorityQueueMarca = new PriorityQueue<>();
-		MyPriotityQueue<Reporte2> priorityQueueReporte2 = new PriorityQueue<>();
+		MyPriotityQueue<PaisAux> priorityQueuePaisAux = new PriorityQueue<>();
 
 		HashTable<String, Marca> marcas = cargaDeDatos.getMarcas();
 
@@ -220,26 +80,27 @@ public class Reportes {
 
 		while (iteratorMarca.hasNext() == true) {
 			Marca oMarca = iteratorMarca.next();
-			HashTable<Pais, Reporte2> cantPais = oMarca.getCantPais();
-			Iterator<Reporte2> iteratorReporte2 = cantPais.iterator();
-			while (iteratorReporte2.hasNext()==true) {
-				Reporte2 oReporte2 = iteratorReporte2.next();
-				priorityQueueMarca.insert(oMarca,oReporte2.getCantProd());
-				priorityQueueReporte2.insert(oReporte2,oReporte2.getCantProd());
+			
+			HashTable<Pais, PaisAux> cantPais = oMarca.getCantPais();
+			Iterator<PaisAux> iteratorPaisAux = cantPais.iterator();
+			while (iteratorPaisAux.hasNext()==true) {
+				PaisAux oPaisAux = iteratorPaisAux.next();
+				priorityQueueMarca.insert(oMarca,oPaisAux.getCantProd());
+				priorityQueuePaisAux.insert(oPaisAux,oPaisAux.getCantProd());
 			}
 		}
 		for (int i = 0; i < 10; i++) {
 			Marca marca;
 			Pais pais;
 			try {
-				System.out.println("Pais:  " + priorityQueueReporte2.getFirst().getPais().getNombre() + "  Marca:  "
+				System.out.println("Pais:  " + priorityQueuePaisAux.getFirst().getPais().getNombre() + "  Marca:  "
 						+ priorityQueueMarca.getFirst().getNombre() + "  " + "Cant productos: "
-						+ priorityQueueReporte2.getFirst().getCantProd());
+						+ priorityQueuePaisAux.getFirst().getCantProd());
 				priorityQueueMarca.dequeue();
-				priorityQueueReporte2.dequeue();
+				priorityQueuePaisAux.dequeue();
 
 			} catch (EmptyQueueException e) {
-
+System.out.println("COLA VACIA");
 			}
 
 		}

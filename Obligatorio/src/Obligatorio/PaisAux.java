@@ -1,20 +1,20 @@
 package Obligatorio;
 
-public class Reporte2 {
+public class PaisAux {
 
 	private Pais pais;
 	private int cantProd;
 	
 	
 	
-	public Reporte2(Pais pais) {
+	public PaisAux(Pais pais) {
 		super();
 		this.pais = pais;
-		cantProd = 0;
+		this.cantProd = 0;
 	}
 	
 	public void agregarCant() {
-		cantProd++;
+		this.cantProd++;
 	}
 	
 	public int getCantProd() {
