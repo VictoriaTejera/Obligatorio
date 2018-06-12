@@ -1,5 +1,8 @@
 package Obligatorio;
 
+import uy.edu.um.prog2.adt.Hash.ElementoYaExistenteException;
+import uy.edu.um.prog2.adt.Hash.HashCerrado;
+import uy.edu.um.prog2.adt.Hash.HashTable;
 import uy.edu.um.prog2.adt.Lista.LinkedList;
 import uy.edu.um.prog2.adt.Lista.List;
 
@@ -8,24 +11,58 @@ public class Clase {
 	private String nombre;
 	private String idClase;
 	private Pais paisClase;
-	List<Producto> pHabilitadosClase;
+	HashTable<Pais, PaisAux> cantPaisC;
+	private List<Producto> pHabilitadosC;
 
-	public List<Producto> getpHabilitadosClase() {
-		return pHabilitadosClase;
+	public Clase(String clase) {
+		this.nombre = clase;
+		this.idClase = ""; // idClase;
+		cantPaisC = new HashCerrado(500, true);
+		pHabilitadosC= new LinkedList();
+
 	}
 
-	public void setpHabilitadosClase(List<Producto> pHabilitadosClase) {
-		this.pHabilitadosClase = pHabilitadosClase;
-	}
+	public PaisAux buscarPaisAuxC(Pais pais) {
 
-	public void addProducto(Producto nombre) {
-		pHabilitadosClase.add(nombre);
+		PaisAux oPaisAuxC;
+		if (cantPaisC.pertenece(pais)) {
+
+			oPaisAuxC = cantPaisC.obtener(pais); 
+
+		} else {
+			oPaisAuxC = new PaisAux(pais);
+			try {
+				cantPaisC.insertar(pais, oPaisAuxC); 
+			} catch (ElementoYaExistenteException e) {
+
+			}
+		}
+
+		return oPaisAuxC;
 	}
 	
-	public Clase(String idClase, String clase) {
-		this.nombre = clase;
+	public void addProductoC(Producto nombre) {
+		pHabilitadosC.add(nombre);
+	}
+
+	public String getIdClase() {
+		return idClase;
+	}
+
+	public void setIdClase(String idClase) {
 		this.idClase = idClase;
-		pHabilitadosClase = new LinkedList();
+	}
+
+	public HashTable<Pais, PaisAux> getCantPaisC() {
+		return cantPaisC;
+	}
+
+	public void setCantPaisC(HashTable<Pais, PaisAux> cantPaisC) {
+		this.cantPaisC = cantPaisC;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getNombre() {

@@ -10,89 +10,76 @@ public class Marca {
 
 	private String nombre;
 	private List<Producto> pHabilitados;
-	//List<Pais> paisesMarca;
-	HashTable <Pais, PaisAux> cantPais;
-	
-	
-	
-	
-	public void addPais(Pais pais) {
-			//paisesMarca.add(pais);
-	}
-	
-	public void addProducto(Producto nombre) {
-		pHabilitados.add(nombre);
-	}
-	
-	public List<Producto> getpHabilitados() {
-		return pHabilitados;
-	}
-	
-	public void setpHabilitados(List<Producto> pHabilitados) {
-		this.pHabilitados = pHabilitados;
-	}
-	
+	HashTable<Pais, PaisAux> cantPais;
+
 	public Marca(String nombre) {
 		this.nombre = nombre;
 		pHabilitados = new LinkedList();
-		//paisesMarca = new LinkedList();
-		cantPais = new HashCerrado(500,true);
+		cantPais = new HashCerrado(500, true);
+
 	}
 
-	public PaisAux buscarReporte2(Pais pais) {
-	
-		PaisAux oReporte2;
+	public void addProducto(Producto nombre) {
+		pHabilitados.add(nombre);
+	}
+
+	public List<Producto> getpHabilitados() {
+		return pHabilitados;
+	}
+
+	public void setpHabilitados(List<Producto> pHabilitados) {
+		this.pHabilitados = pHabilitados;
+	}
+
+	public PaisAux buscarPaisAux(Pais pais) {
+
+		PaisAux oPaisAux;
 		if (cantPais.pertenece(pais) == true) {
 
-			oReporte2 = cantPais.obtener(pais);
+			oPaisAux = cantPais.obtener(pais);
 
 		} else {
-			oReporte2 = new PaisAux(pais);
+			oPaisAux = new PaisAux(pais);
 			try {
-				cantPais.insertar(pais,oReporte2);
+				cantPais.insertar(pais, oPaisAux);
 			} catch (ElementoYaExistenteException e) {
-				
+
 			}
 		}
-		
-		return oReporte2;
+
+		return oPaisAux;
 	}
-	
-	
-	
-	
-	public HashTable<Pais,PaisAux> getCantPais() {
+
+	public HashTable<Pais, PaisAux> getCantPais() {
 		return cantPais;
 	}
 
-	public void setCantPais(HashTable<Pais,PaisAux> cantPais) {
+	public void setCantPais(HashTable<Pais, PaisAux> cantPais) {
 		this.cantPais = cantPais;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
-	
+
 	public boolean equals(Marca e) {
-		boolean equal=false;
-		if(this.nombre.equals(e.getNombre())==true) {
-			equal=true;
+		boolean equal = false;
+		if (this.nombre.equals(e.getNombre()) == true) {
+			equal = true;
 		}
 		return equal;
 	}
 
-//	public List<Pais> getPaisesMarca() {
-//		return paisesMarca;
-//	}
-//
-//	public void setPaisesMarca(List<Pais> paisesMarca) {
-//		this.paisesMarca = paisesMarca;
-//	}
+	// public List<Pais> getPaisesMarca() {
+	// return paisesMarca;
+	// }
+	//
+	// public void setPaisesMarca(List<Pais> paisesMarca) {
+	// this.paisesMarca = paisesMarca;
+	// }
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	
 
 }

@@ -84,10 +84,10 @@ public class CargaDeDatos {
 			oEmpresa = buscarEmpresa(empresa, ruc);
 			oPais = buscarPais(pais);
 			oMarca = buscarMarca(marca);
-			oClase = buscarClase(idClase, clase);
+			oClase = buscarClase(clase);
 			oRubro = (LinkedList<Rubro>) getRubro(rubro);
 
-			oClase.setPaisClase(oPais);
+			//oClase.setPaisClase(oPais);
 
 			clave = idProd + nroHabilitacion + nombre;
 
@@ -103,10 +103,13 @@ public class CargaDeDatos {
 
 			if (estado.equals("HABILITADO")) {
 				oEmpresa.addProducto(producto);
+				
 				oMarca.addProducto(producto);
-				oClase.addProducto(producto);
+				oClase.addProductoC(producto);
+				
 				oPais.addProducto(producto);
-				oMarca.buscarReporte2(oPais).agregarCant();
+				oMarca.buscarPaisAux(oPais).agregarCant();
+				oClase.buscarPaisAuxC(oPais).agregarCant();
 				
 			}
 		}
@@ -162,14 +165,14 @@ public class CargaDeDatos {
 		return oPais;
 	}
 
-	private Clase buscarClase(String idClase, String clase) {
+	private Clase buscarClase(String clase) {
 		Clase oClase;
-		if (clases.pertenece(idClase) == true) {
+		if (clases.pertenece(clase) == true) {
 
-			oClase = clases.obtener(idClase);
+			oClase = clases.obtener(clase);
 
 		} else {
-			oClase = new Clase(idClase, clase);
+			oClase = new Clase(clase);
 		}
 		return oClase;
 	}
@@ -185,7 +188,7 @@ public class CargaDeDatos {
 
 		}
 		if (objeto instanceof Clase) {
-			String nombreClave = ((Clase) objeto).getNombre();
+			String nombreClave = ((Clase) objeto).getIdClase() + ((Clase) objeto).getNombre();
 			if (clases != null) {
 				if (clases.pertenece(nombreClave) == false) {
 					clases.insertar(nombreClave, (Clase) objeto);

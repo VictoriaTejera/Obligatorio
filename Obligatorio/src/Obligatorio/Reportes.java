@@ -149,32 +149,42 @@ public class Reportes {
 	
 	
 	public void reporte4() {
+		
+		
+		MyPriotityQueue<Clase> priorityQueueClase = new PriorityQueue<>();
+		MyPriotityQueue<PaisAux> priorityQueuePaisAux = new PriorityQueue<>();
 
 		HashTable<String, Clase> clases = cargaDeDatos.getClases();
 
 		Iterator<Clase> iteratorClase = clases.iterator();
 
-		MyHeap<Integer, Clase> heapClase = new HeapImpl<>(clases.size(), 1);
-
 		while (iteratorClase.hasNext() == true) {
 			Clase oClase = iteratorClase.next();
-
-			int clave = oClase.getpHabilitadosClase().size();
-
-			heapClase.insert(clave, oClase);
+			
+			HashTable<Pais, PaisAux> cantPaisC = oClase.getCantPaisC();
+			Iterator<PaisAux> iteratorPaisAux = cantPaisC.iterator();
+			while (iteratorPaisAux.hasNext()==true) {
+				PaisAux oPaisAux = iteratorPaisAux.next();
+				priorityQueueClase.insert(oClase,oPaisAux.getCantProd());
+				priorityQueuePaisAux.insert(oPaisAux,oPaisAux.getCantProd());
+			}
 		}
-
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			Clase clase;
+			Pais pais;
 			try {
-				clase = heapClase.findAndDelete();
-				System.out.println("Clase:  " + clase.getNombre() + "  " + "Pais:  " + clase.getPaisClase().getNombre()
-						+ "   " + "Cant productos: " + clase.getpHabilitadosClase().size());
-			} catch (HeapVacio e) {
+				System.out.println("Pais:  " + priorityQueuePaisAux.getFirst().getPais().getNombre() + "  Clase:  "
+						+ priorityQueueClase.getFirst().getNombre() + "  " + "Cant productos: "
+						+ priorityQueuePaisAux.getFirst().getCantProd());
+				priorityQueueClase.dequeue();
+				priorityQueuePaisAux.dequeue();
 
+			} catch (EmptyQueueException e) {
+				System.out.println("COLA VACIA");
 			}
 
 		}
+		
 	}
 
-}
+	}

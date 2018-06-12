@@ -13,10 +13,11 @@ public class Principal {
 		
 		//System.out.println("20 empresas con mayor cantidad de productos habilitados (empresa, cantidad):");
 		//System.out.println("");
-		reporte.reporte1();
+		//reporte.reporte1();
 		//System.out.println("-----------------------------------------------------------------------------------");
 		//reporte.reporte2();
-		reporte.reporte3();
+		//reporte.reporte3();
+		reporte.reporte4();
 		
 		
 	
