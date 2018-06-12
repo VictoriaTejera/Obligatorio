@@ -19,25 +19,20 @@ public class Clase {
 		cantPaisC = new HashCerrado(500, true);
 		pHabilitadosC= new LinkedList();
 		this.idClase="";
-
 	}
 
 	public PaisAux buscarPaisAuxC(Pais pais) {
 
 		PaisAux oPaisAuxC;
 		if (cantPaisC.pertenece(pais)) {
-
 			oPaisAuxC = cantPaisC.obtener(pais); 
-
 		} else {
 			oPaisAuxC = new PaisAux(pais);
 			try {
 				cantPaisC.insertar(pais, oPaisAuxC); 
 			} catch (ElementoYaExistenteException e) {
-
 			}
 		}
-
 		return oPaisAuxC;
 	}
 	

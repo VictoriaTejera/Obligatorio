@@ -7,14 +7,12 @@ import uy.edu.um.prog2.adt.Lista.PosInvalida;
 public class Pais {
 
 	private String nombre;
-
 	private List<Producto> prodHabilitados;
 
+	
 	public Pais(String nombre) {
 		this.nombre = nombre;
-
 		prodHabilitados = new LinkedList();
-
 	}
 	
 	public boolean equals(Pais p) {
@@ -44,5 +42,4 @@ public class Pais {
 	public void setProdHablitados(List<Producto> prodHablitados) {
 		this.prodHabilitados = prodHabilitados;
 	}
-
 }

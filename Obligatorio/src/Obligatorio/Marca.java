@@ -16,31 +16,24 @@ public class Marca {
 		this.nombre = nombre;
 		pHabilitados = new LinkedList();
 		cantPais = new HashCerrado(500, true);
-
 	}
 
 	public void addProducto(Producto nombre) {
 		pHabilitados.add(nombre);
 	}
 
-	
-
 	public PaisAux buscarPaisAux(Pais pais) {
 
 		PaisAux oPaisAux;
 		if (cantPais.pertenece(pais) == true) {
-
 			oPaisAux = cantPais.obtener(pais);
-
 		} else {
 			oPaisAux = new PaisAux(pais);
 			try {
 				cantPais.insertar(pais, oPaisAux);
 			} catch (ElementoYaExistenteException e) {
-
 			}
 		}
-
 		return oPaisAux;
 	}
 	

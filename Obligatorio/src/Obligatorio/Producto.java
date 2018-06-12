@@ -17,6 +17,7 @@ public class Producto {
 
 	public Producto(String nombre, String estado, Clase clase, Pais pais, Marca marca, Empresa empresa,
 			LinkedList<Rubro> rubro, String idProd) {
+		
 		super();
 		this.nombre = nombre;
 		this.estado = estado;
@@ -26,7 +27,6 @@ public class Producto {
 		this.empresa = empresa;
 		this.rubro = rubro;
 		this.idProd=idProd;
-
 	}
 
 	public String getNombre() {
@@ -84,5 +84,4 @@ public class Producto {
 	public void setRubro(LinkedList<Rubro> rubro) {
 		this.rubro = rubro;
 	}
-
 }

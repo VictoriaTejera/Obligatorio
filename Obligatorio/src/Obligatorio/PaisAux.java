@@ -5,8 +5,6 @@ public class PaisAux {
 	private Pais pais;
 	private int cantProd;
 	
-	
-	
 	public PaisAux(Pais pais) {
 		super();
 		this.pais = pais;
@@ -29,7 +27,4 @@ public class PaisAux {
 	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
-	
-	
-	
 }

@@ -78,6 +78,9 @@ public class CargaDeDatos {
 			idClase = String.valueOf(fields[9]);
 			clase = String.valueOf(fields[10]);
 			marca = String.valueOf(fields[12]);
+				if (marca.contains("  ")) {
+					marca=marca.replace("  ", " ");
+				}
 			pais = String.valueOf(fields[13]);
 			estado = String.valueOf(fields[20]);
 			ruc = String.valueOf(fields[23]);
@@ -89,7 +92,6 @@ public class CargaDeDatos {
 			oRubro = (LinkedList<Rubro>) getRubro(rubro);
 
 			clave = idProd + nroHabilitacion + nombre;
-
 			producto = new Producto(nombre, estado, oClase, oPais, oMarca, oEmpresa, oRubro, idProd);
 
 			productos.insertar(clave, producto);
@@ -102,18 +104,16 @@ public class CargaDeDatos {
 
 			if (estado.equals("HABILITADO")) {
 				oEmpresa.addProducto(producto);
-
 				oMarca.addProducto(producto);
 				oClase.addProductoC(producto);
-
 				oPais.addProducto(producto);
 				oMarca.buscarPaisAux(oPais).agregarCant();
 				oClase.buscarPaisAuxC(oPais).agregarCant();
-
 			}
 		}
 
 		b.close();
+		
 		totalTime += (System.currentTimeMillis() - startTime);
 		System.out.println("Tiempo del carga de datos: " + totalTime + "ms");
 	}
@@ -121,9 +121,7 @@ public class CargaDeDatos {
 	private Empresa buscarEmpresa(String empresa, String ruc) {
 		Empresa oEmpresa;
 		if (empresas.pertenece(ruc) == true) {
-
 			oEmpresa = empresas.obtener(ruc);
-
 		} else {
 			oEmpresa = new Empresa(empresa, ruc);
 		}
@@ -138,15 +136,12 @@ public class CargaDeDatos {
 			oMarca = new Marca(marca);
 		}
 		return oMarca;
-
 	}
 
 	private Pais buscarPais(String pais) {
 		Pais oPais;
 		if (paises.pertenece(pais) == true) {
-
 			oPais = paises.obtener(pais);
-
 		} else {
 			oPais = new Pais(pais);
 		}
@@ -156,9 +151,7 @@ public class CargaDeDatos {
 	private Clase buscarClase(String clase) {
 		Clase oClase;
 		if (clases.pertenece(clase) == true) {
-
 			oClase = clases.obtener(clase);
-
 		} else {
 			oClase = new Clase(clase);
 		}
@@ -173,16 +166,13 @@ public class CargaDeDatos {
 			if (!empresas.pertenece(objClave)) {
 				empresas.insertar(objClave, (Empresa) objeto);
 			}
-
 		}
 		if (objeto instanceof Clase) {
 			String nombreClave = ((Clase) objeto).getIdClase() + ((Clase) objeto).getNombre();
 			if (clases != null) {
 				if (clases.pertenece(nombreClave) == false) {
 					clases.insertar(nombreClave, (Clase) objeto);
-
 				}
-
 			}
 		}
 		if (objeto instanceof Pais) {
@@ -190,7 +180,6 @@ public class CargaDeDatos {
 			if (paises != null) {
 				if (paises.pertenece(nombreClave) == false) {
 					paises.insertar(nombreClave, (Pais) objeto);
-
 				}
 			}
 		}
@@ -199,11 +188,9 @@ public class CargaDeDatos {
 			if (marcas != null) {
 				if (marcas.pertenece(nombreClave) == false) {
 					marcas.insertar(nombreClave, (Marca) objeto);
-
 				}
 			}
 		}
-
 	}
 
 	private List<Rubro> getRubro(String rubro) {
@@ -252,5 +239,4 @@ public class CargaDeDatos {
 	public HashTable<String, Marca> getMarcas() {
 		return marcas;
 	}
-
 }
