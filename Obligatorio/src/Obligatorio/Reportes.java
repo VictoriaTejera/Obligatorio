@@ -61,7 +61,7 @@ public class Reportes {
 		for (int i = 0; i < 20; i++) {
 			try {
 				System.out.println(
-						priorityQueue.getFirst().getNombre() + " " + priorityQueue.getFirst().getpHabilitados().size());
+						"EMPRESA:  " + priorityQueue.getFirst().getNombre() + " - #PHABILITADOS: " + priorityQueue.getFirst().getpHabilitados().size());
 
 				priorityQueue.dequeue();
 
@@ -99,14 +99,14 @@ public class Reportes {
 			Marca marca;
 			Pais pais;
 			try {
-				System.out.println("Pais:  " + priorityQueuePaisAux.getFirst().getPais().getNombre() + "  Marca:  "
-						+ priorityQueueMarca.getFirst().getNombre() + "  " + "Cant productos: "
+				System.out.println("PAIS:  " + priorityQueuePaisAux.getFirst().getPais().getNombre() + " - MARCA:  "
+						+ priorityQueueMarca.getFirst().getNombre() + " - #PHABILITADOS: "
 						+ priorityQueuePaisAux.getFirst().getCantProd());
 				priorityQueueMarca.dequeue();
 				priorityQueuePaisAux.dequeue();
 
 			} catch (EmptyQueueException e) {
-				System.out.println("COLA VACIA");
+				System.out.println("FILA VACIA");
 			}
 
 		}
@@ -144,8 +144,8 @@ public class Reportes {
 				porcentaje = ((clave * 100) / (pHabTotal));
 				DecimalFormat df = new DecimalFormat("0,00%");
 				String porcStr = df.format(porcentaje);
-				System.out.println("PAIS:  " + priorityQueue.getFirst().getNombre() + " CANTIDAD:  "
-						+ priorityQueue.getFirst().getProdHablitados().size() + " PORCENTAJE: " + porcStr + " ");
+				System.out.println("PAIS:  " + priorityQueue.getFirst().getNombre() + " - #PHABILITADOS:  "
+						+ priorityQueue.getFirst().getProdHablitados().size() + " - PORCENTAJE: " + porcStr + " ");
 
 				priorityQueue.dequeue();
 
@@ -185,14 +185,14 @@ public class Reportes {
 			Clase clase;
 			Pais pais;
 			try {
-				System.out.println("Pais:  " + priorityQueuePaisAux.getFirst().getPais().getNombre() + "  Clase:  "
-						+ priorityQueueClase.getFirst().getNombre() + "  " + "Cant productos: "
+				System.out.println("PAIS:  " + priorityQueuePaisAux.getFirst().getPais().getNombre() + " - CLASE:  "
+						+ priorityQueueClase.getFirst().getNombre() + " - CANTIDAD: "
 						+ priorityQueuePaisAux.getFirst().getCantProd());
 				priorityQueueClase.dequeue();
 				priorityQueuePaisAux.dequeue();
 
 			} catch (EmptyQueueException e) {
-				System.out.println("COLA VACIA");
+				System.out.println("FILA VACIA");
 			}
 
 		}
