@@ -15,11 +15,11 @@ public class Principal {
 		System.out.println("------------------------------------------------------------------------------------");	
 		System.out.println("Elija la opcion: ");
 		System.out.println("");
-		System.out.println("1. Listar 20 empresas con mayor cantidad de productos habilitados");
-		System.out.println("2. Listar 10 marcas con mayor cantidad de productos habilitados");
-		System.out.println("3. Listar 10 paises con mayor cantidad de productos habilitados");
-		System.out.println("4. Listar 20 clases con mayor cantidad de productos habilitados");
-		System.out.println("5. Salir");
+		System.out.println("1. Listar 20 empresas con mayor cantidad de productos habilitados.");
+		System.out.println("2. Listar 10 marcas con mayor cantidad de productos habilitados.");
+		System.out.println("3. Listar 10 paises con mayor cantidad de productos habilitados.");
+		System.out.println("4. Listar 20 clases con mayor cantidad de productos habilitados.");
+		System.out.println("5. Salir.");
 		opcion = sc.nextLine(); 
 		switch(opcion) {
 		case "1": 
@@ -39,7 +39,7 @@ public class Principal {
 			break;
 		default:
 		if (!opcion.equals("1") && !opcion.equals("2")&& !opcion.equals("3") && !opcion.equals("4") && !opcion.equals("5")) {
-			System.out.println("opcion incorrecta, vuelva a intentarlo");  
+			System.out.println("Opcion incorrecta, vuelva a intentarlo.");  
 				System.out.println("");}
 		
 		}		

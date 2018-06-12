@@ -61,8 +61,7 @@ public class Reportes {
 		for (int i = 0; i < 20; i++) {
 			try {
 				System.out.printf("%-2s%-50s%-5s%-50s\n", "|", priorityQueue.getFirst().getNombre(), "|", priorityQueue.getFirst().getpHabilitados().size() );
-				//System.out.println(
-						//"EMPRESA:  " + priorityQueue.getFirst().getNombre() + " - #PHABILITADOS: " + priorityQueue.getFirst().getpHabilitados().size());
+				
 
 				priorityQueue.dequeue();
 
@@ -71,7 +70,8 @@ public class Reportes {
 			}
 		}
 		totalTime += (System.currentTimeMillis() - startTime);
-		System.out.println("Tiempo del reporte 1: " + totalTime + "ms");
+		System.out.println("");
+		System.out.println("TIEMPO DEL PRIMER REPORTE: " + totalTime + "ms");
 	}
 
 	public void reporte2() {
@@ -103,9 +103,6 @@ public class Reportes {
 			try {
 				System.out.printf("%-2s%-50s%-5s%-50s%-5s%-50s\n", "|", priorityQueuePaisAux.getFirst().getPais().getNombre(), "|" ,priorityQueueMarca.getFirst().getNombre() , "|", priorityQueuePaisAux.getFirst().getCantProd() );
 				
-				//System.out.println("PAIS:  " + priorityQueuePaisAux.getFirst().getPais().getNombre() + " - MARCA:  "
-					//	+ priorityQueueMarca.getFirst().getNombre() + " - #PHABILITADOS: "
-						//+ priorityQueuePaisAux.getFirst().getCantProd());
 				priorityQueueMarca.dequeue();
 				priorityQueuePaisAux.dequeue();
 
@@ -115,7 +112,8 @@ public class Reportes {
 
 		}
 		totalTime += (System.currentTimeMillis() - startTime);
-		System.out.println("Tiempo del reporte 2: " + totalTime + "ms");
+		System.out.println("");
+		System.out.println("TIEMPO DEL SEGUNDO REPORTE: " + totalTime + "ms");
 	}
 
 	public void reporte3() {
@@ -140,7 +138,7 @@ public class Reportes {
 			priorityQueue.insert(oPais, clave);
 
 		}
-
+		System.out.printf("%-2s%-50s%-5s%-50s%-5s%-50s\n", "|", "PAIS", "|" , "#PHABILITADOS", "|", "PORCENTAJE");
 		for (int i = 0; i < 10; i++) {
 			try {
 				clave = priorityQueue.getFirst().getProdHablitados().size();
@@ -148,8 +146,7 @@ public class Reportes {
 				porcentaje = ((clave * 100) / (pHabTotal));
 				DecimalFormat df = new DecimalFormat("0,00%");
 				String porcStr = df.format(porcentaje);
-				System.out.println("PAIS:  " + priorityQueue.getFirst().getNombre() + " - #PHABILITADOS:  "
-						+ priorityQueue.getFirst().getProdHablitados().size() + " - PORCENTAJE: " + porcStr + " ");
+				System.out.printf("%-2s%-50s%-5s%-50s%-5s%-50s\n", "|",priorityQueue.getFirst().getNombre() , "|",  priorityQueue.getFirst().getProdHablitados().size() , "|",porcStr );
 
 				priorityQueue.dequeue();
 
@@ -158,7 +155,8 @@ public class Reportes {
 			}
 		}
 		totalTime += (System.currentTimeMillis() - startTime);
-		System.out.println("Tiempo del reporte 3: " + totalTime + "ms");
+		System.out.println("");
+		System.out.println("TIEMPO DEL TERCER REPORTE: " + totalTime + "ms");
 
 	}
 
@@ -185,13 +183,13 @@ public class Reportes {
 				priorityQueuePaisAux.insert(oPaisAux, oPaisAux.getCantProd());
 			}
 		}
+		System.out.printf("%-2s%-50s%-5s%-110s%-5s%-50s\n", "|", "PAIS", "|" , "CLASE", "|", "#PHABILITADOS");
 		for (int i = 0; i < 20; i++) {
 			Clase clase;
 			Pais pais;
 			try {
-				System.out.println("PAIS:  " + priorityQueuePaisAux.getFirst().getPais().getNombre() + " - CLASE:  "
-						+ priorityQueueClase.getFirst().getNombre() + " - CANTIDAD: "
-						+ priorityQueuePaisAux.getFirst().getCantProd());
+				System.out.printf("%-2s%-50s%-5s%-110s%-5s%-50s\n", "|", priorityQueuePaisAux.getFirst().getPais().getNombre(), "|" ,priorityQueueClase.getFirst().getNombre() , "|", priorityQueuePaisAux.getFirst().getCantProd() );
+			
 				priorityQueueClase.dequeue();
 				priorityQueuePaisAux.dequeue();
 
@@ -201,7 +199,8 @@ public class Reportes {
 
 		}
 		totalTime += (System.currentTimeMillis() - startTime);
-		System.out.println("Tiempo del reporte 4: " + totalTime + "ms");
+		System.out.println("");
+		System.out.println("TIEMPO DEL CUARTO REPORTE: " + totalTime + "ms");
 
 	}
 
