@@ -11,14 +11,14 @@ public class Clase {
 	private String nombre;
 	private String idClase;
 	private Pais paisClase;
-	HashTable<Pais, PaisAux> cantPaisC;
+	private HashTable<Pais, PaisAux> cantPaisC;
 	private List<Producto> pHabilitadosC;
 
 	public Clase(String clase) {
 		this.nombre = clase;
-		this.idClase = ""; // idClase;
 		cantPaisC = new HashCerrado(500, true);
 		pHabilitadosC= new LinkedList();
+		this.idClase="";
 
 	}
 

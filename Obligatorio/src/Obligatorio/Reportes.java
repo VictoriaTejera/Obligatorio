@@ -21,7 +21,7 @@ public class Reportes {
 
 	Scanner sc = new Scanner(System.in);
 
-	CargaDeDatos cargaDeDatos;
+	private CargaDeDatos cargaDeDatos;
 
 	public Reportes() {
 
@@ -39,6 +39,8 @@ public class Reportes {
 
 	public void reporte1() {
 
+		long totalTime = 0;
+		long startTime = System.currentTimeMillis();
 		MyPriotityQueue<Empresa> priorityQueue = new PriorityQueue<>();
 
 		HashTable<String, Empresa> empresas = cargaDeDatos.getEmpresas();
@@ -67,11 +69,14 @@ public class Reportes {
 
 			}
 		}
-
+		totalTime += (System.currentTimeMillis() - startTime);
+		System.out.println("Tiempo del reporte 1: " + totalTime + "ms");
 	}
 
-
 	public void reporte2() {
+		long totalTime = 0;
+		long startTime = System.currentTimeMillis();
+
 		MyPriotityQueue<Marca> priorityQueueMarca = new PriorityQueue<>();
 		MyPriotityQueue<PaisAux> priorityQueuePaisAux = new PriorityQueue<>();
 
@@ -81,13 +86,13 @@ public class Reportes {
 
 		while (iteratorMarca.hasNext() == true) {
 			Marca oMarca = iteratorMarca.next();
-			
+
 			HashTable<Pais, PaisAux> cantPais = oMarca.getCantPais();
 			Iterator<PaisAux> iteratorPaisAux = cantPais.iterator();
-			while (iteratorPaisAux.hasNext()==true) {
+			while (iteratorPaisAux.hasNext() == true) {
 				PaisAux oPaisAux = iteratorPaisAux.next();
-				priorityQueueMarca.insert(oMarca,oPaisAux.getCantProd());
-				priorityQueuePaisAux.insert(oPaisAux,oPaisAux.getCantProd());
+				priorityQueueMarca.insert(oMarca, oPaisAux.getCantProd());
+				priorityQueuePaisAux.insert(oPaisAux, oPaisAux.getCantProd());
 			}
 		}
 		for (int i = 0; i < 10; i++) {
@@ -105,38 +110,42 @@ public class Reportes {
 			}
 
 		}
+		totalTime += (System.currentTimeMillis() - startTime);
+		System.out.println("Tiempo del reporte 2: " + totalTime + "ms");
 	}
-	
+
 	public void reporte3() {
-		
+
+		long totalTime = 0;
+		long startTime = System.currentTimeMillis();
+
 		MyPriotityQueue<Pais> priorityQueue = new PriorityQueue<>();
 
 		HashTable<String, Pais> paises = cargaDeDatos.getPaises();
 
 		Iterator<Pais> iteratorPais = paises.iterator();
 		int clave = 0;
-		double pHabTotal=0;
+		double pHabTotal = 0;
 		double porcentaje = 0;
-		
-		
+
 		while (iteratorPais.hasNext() == true) {
 
 			Pais oPais = iteratorPais.next();
 			clave = oPais.getProdHablitados().size();
 			pHabTotal = pHabTotal + clave;
 			priorityQueue.insert(oPais, clave);
-			
+
 		}
 
 		for (int i = 0; i < 10; i++) {
 			try {
 				clave = priorityQueue.getFirst().getProdHablitados().size();
-				
-				porcentaje = ((clave*100)/(pHabTotal));
+
+				porcentaje = ((clave * 100) / (pHabTotal));
 				DecimalFormat df = new DecimalFormat("0,00%");
 				String porcStr = df.format(porcentaje);
-				System.out.println(
-						"PAIS:  " + priorityQueue.getFirst().getNombre() + " CANTIDAD:  " + priorityQueue.getFirst().getProdHablitados().size() + " PORCENTAJE: " + porcStr + " ");
+				System.out.println("PAIS:  " + priorityQueue.getFirst().getNombre() + " CANTIDAD:  "
+						+ priorityQueue.getFirst().getProdHablitados().size() + " PORCENTAJE: " + porcStr + " ");
 
 				priorityQueue.dequeue();
 
@@ -144,13 +153,16 @@ public class Reportes {
 
 			}
 		}
+		totalTime += (System.currentTimeMillis() - startTime);
+		System.out.println("Tiempo del reporte 3: " + totalTime + "ms");
 
 	}
-	
-	
+
 	public void reporte4() {
-		
-		
+
+		long totalTime = 0;
+		long startTime = System.currentTimeMillis();
+
 		MyPriotityQueue<Clase> priorityQueueClase = new PriorityQueue<>();
 		MyPriotityQueue<PaisAux> priorityQueuePaisAux = new PriorityQueue<>();
 
@@ -160,13 +172,13 @@ public class Reportes {
 
 		while (iteratorClase.hasNext() == true) {
 			Clase oClase = iteratorClase.next();
-			
+
 			HashTable<Pais, PaisAux> cantPaisC = oClase.getCantPaisC();
 			Iterator<PaisAux> iteratorPaisAux = cantPaisC.iterator();
-			while (iteratorPaisAux.hasNext()==true) {
+			while (iteratorPaisAux.hasNext() == true) {
 				PaisAux oPaisAux = iteratorPaisAux.next();
-				priorityQueueClase.insert(oClase,oPaisAux.getCantProd());
-				priorityQueuePaisAux.insert(oPaisAux,oPaisAux.getCantProd());
+				priorityQueueClase.insert(oClase, oPaisAux.getCantProd());
+				priorityQueuePaisAux.insert(oPaisAux, oPaisAux.getCantProd());
 			}
 		}
 		for (int i = 0; i < 20; i++) {
@@ -184,7 +196,9 @@ public class Reportes {
 			}
 
 		}
-		
-	}
+		totalTime += (System.currentTimeMillis() - startTime);
+		System.out.println("Tiempo del reporte 4: " + totalTime + "ms");
 
 	}
+
+}

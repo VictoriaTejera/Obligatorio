@@ -23,13 +23,7 @@ public class Marca {
 		pHabilitados.add(nombre);
 	}
 
-	public List<Producto> getpHabilitados() {
-		return pHabilitados;
-	}
-
-	public void setpHabilitados(List<Producto> pHabilitados) {
-		this.pHabilitados = pHabilitados;
-	}
+	
 
 	public PaisAux buscarPaisAux(Pais pais) {
 
@@ -49,6 +43,22 @@ public class Marca {
 
 		return oPaisAux;
 	}
+	
+	
+	public boolean equals(Marca m) {
+		boolean equal=false; 
+		if(this.nombre.equals(m.getNombre())==true) {
+			equal=true;
+		}
+		return equal;
+	}
+	public List<Producto> getpHabilitados() {
+		return pHabilitados;
+	}
+
+	public void setpHabilitados(List<Producto> pHabilitados) {
+		this.pHabilitados = pHabilitados;
+	}
 
 	public HashTable<Pais, PaisAux> getCantPais() {
 		return cantPais;
@@ -61,22 +71,6 @@ public class Marca {
 	public String getNombre() {
 		return nombre;
 	}
-
-	public boolean equals(Marca e) {
-		boolean equal = false;
-		if (this.nombre.equals(e.getNombre()) == true) {
-			equal = true;
-		}
-		return equal;
-	}
-
-	// public List<Pais> getPaisesMarca() {
-	// return paisesMarca;
-	// }
-	//
-	// public void setPaisesMarca(List<Pais> paisesMarca) {
-	// this.paisesMarca = paisesMarca;
-	// }
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

@@ -21,11 +21,11 @@ import uy.edu.um.prog2.adt.SearchTree.MyBinarySearchTree;
 
 public class CargaDeDatos {
 
-	HashTable<String, Producto> productos;
-	HashTable<String, Pais> paises;
-	HashTable<String, Clase> clases;
-	HashTable<String, Empresa> empresas;
-	HashTable<String, Marca> marcas;
+	private HashTable<String, Producto> productos;
+	private HashTable<String, Pais> paises;
+	private HashTable<String, Clase> clases;
+	private HashTable<String, Empresa> empresas;
+	private HashTable<String, Marca> marcas;
 
 	public CargaDeDatos() {
 		productos = new HashCerrado(60000, true);
@@ -38,13 +38,15 @@ public class CargaDeDatos {
 
 	public void cargar(String archivo) throws ElementoYaExistenteException, IOException {
 
+		long totalTime = 0;
+		long startTime = System.currentTimeMillis();
+
 		BufferedReader b = new BufferedReader(new InputStreamReader(new FileInputStream(archivo + ".csv"), "UTF-8"));
 
 		String readLine = "";
 
 		String[] fields;
 		String nombre;
-		String nombreFantasia;
 		String idProd = null;
 		String rubro;
 		String empresa;
@@ -69,7 +71,6 @@ public class CargaDeDatos {
 			readLine = readLine.substring(1, readLine.length() - 1);
 			fields = readLine.split("\";\"");
 			nombre = String.valueOf(fields[0]);
-			nombreFantasia = String.valueOf(fields[1]);
 			idProd = String.valueOf(fields[2]);
 			rubro = String.valueOf(fields[3]);
 			nroHabilitacion = String.valueOf(fields[3]);
@@ -87,11 +88,9 @@ public class CargaDeDatos {
 			oClase = buscarClase(clase);
 			oRubro = (LinkedList<Rubro>) getRubro(rubro);
 
-			//oClase.setPaisClase(oPais);
-
 			clave = idProd + nroHabilitacion + nombre;
 
-			producto = new Producto(nombre, nombreFantasia, estado, oClase, oPais, oMarca, oEmpresa, oRubro);
+			producto = new Producto(nombre, estado, oClase, oPais, oMarca, oEmpresa, oRubro, idProd);
 
 			productos.insertar(clave, producto);
 
@@ -103,32 +102,21 @@ public class CargaDeDatos {
 
 			if (estado.equals("HABILITADO")) {
 				oEmpresa.addProducto(producto);
-				
+
 				oMarca.addProducto(producto);
 				oClase.addProductoC(producto);
-				
+
 				oPais.addProducto(producto);
 				oMarca.buscarPaisAux(oPais).agregarCant();
 				oClase.buscarPaisAuxC(oPais).agregarCant();
-				
+
 			}
 		}
 
 		b.close();
+		totalTime += (System.currentTimeMillis() - startTime);
+		System.out.println("Tiempo del carga de datos: " + totalTime + "ms");
 	}
-
-	private List<Rubro> getRubro(String rubro) {
-
-		List<Rubro> lista = new LinkedList<>();
-		String readLine = "";
-		String[] fields = readLine.split("\";\"");
-		for (int i = 0; i < fields.length; i++) {
-			lista.add(new Rubro(String.valueOf(fields[i])));
-		}
-		return (LinkedList<Rubro>) lista;
-	}
-	
-	
 
 	private Empresa buscarEmpresa(String empresa, String ruc) {
 		Empresa oEmpresa;
@@ -216,6 +204,17 @@ public class CargaDeDatos {
 			}
 		}
 
+	}
+
+	private List<Rubro> getRubro(String rubro) {
+
+		List<Rubro> lista = new LinkedList<>();
+		String readLine = "";
+		String[] fields = readLine.split("\";\"");
+		for (int i = 0; i < fields.length; i++) {
+			lista.add(new Rubro(String.valueOf(fields[i])));
+		}
+		return (LinkedList<Rubro>) lista;
 	}
 
 	public HashTable<String, Producto> getProductos() {
