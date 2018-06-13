@@ -53,7 +53,8 @@ public class Reportes {
 
 			}
 			
-		System.out.printf("%-2s%-50s%-5s%-50s\n", "|", "EMPRESA", "|" , "#PHABILITADOS");
+		System.out.printf("%-2s%-50s%-5s%-50s\n", "|", "EMPRESA:", "|" , "#PHABILITADOS:");
+		System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");	
 		for (int i = 0; i < 20; i++) {
 			try {
 				System.out.printf("%-2s%-50s%-5s%-50s\n", "|", priorityQueue.getFirst().getNombre(), "|", priorityQueue.getFirst().getpHabilitados().size() );
@@ -91,7 +92,8 @@ public class Reportes {
 			}
 		}
 		
-		System.out.printf("%-2s%-50s%-5s%-50s%-5s%-50s\n", "|", "PAIS", "|" , "MARCA", "|", "#PHABILITADOS");
+		System.out.printf("%-2s%-50s%-5s%-50s%-5s%-50s\n", "|", "PAIS:", "|" , "MARCA:", "|", "#PHABILITADOS:");
+		System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");	
 		for (int i = 0; i < 10; i++) {
 			Marca marca;
 			Pais pais;
@@ -129,7 +131,8 @@ public class Reportes {
 			priorityQueue.insert(oPais, clave);
 		}
 		
-		System.out.printf("%-2s%-50s%-5s%-50s%-5s%-50s\n", "|", "PAIS", "|" , "#PHABILITADOS", "|", "PORCENTAJE");
+		System.out.printf("%-2s%-50s%-5s%-50s%-5s%-50s\n", "|", "PAIS:", "|" , "#PHABILITADOS:", "|", "PORCENTAJE:");
+		System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");	
 		for (int i = 0; i < 10; i++) {
 			try {
 				clave = priorityQueue.getFirst().getProdHablitados().size();
@@ -170,7 +173,8 @@ public class Reportes {
 			}
 		}
 		
-		System.out.printf("%-2s%-50s%-5s%-110s%-5s%-50s\n", "|", "PAIS", "|" , "CLASE", "|", "#PHABILITADOS");
+		System.out.printf("%-2s%-50s%-5s%-110s%-5s%-50s\n", "|", "PAIS:", "|" , "CLASE:", "|", "#PHABILITADOS:");
+		System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");	
 		for (int i = 0; i < 20; i++) {
 			Clase clase;
 			Pais pais;
