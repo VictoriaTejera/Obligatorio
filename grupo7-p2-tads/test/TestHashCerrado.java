@@ -8,7 +8,7 @@ import uy.edu.um.prog2.adt.Hash.HashCerrado;
 import uy.edu.um.prog2.adt.Hash.HashTable;
 
 public class TestHashCerrado {
-
+	
 	@Test
 	public void testInsertar() {
 		HashTable<Integer, Integer> hash = new HashCerrado<>(5, true);
@@ -102,5 +102,23 @@ public class TestHashCerrado {
 		}
 	}
 	
-	
+	@Test
+	public void testAgrandar() {
+		HashTable<Integer, Integer> hash = new HashCerrado<>(5, true);
+		try {
+			hash.insertar(1, 1);
+			hash.insertar(2, 2);
+			hash.insertar(3, 3);
+			hash.insertar(4, 4);
+			hash.insertar(5, 5);
+			hash.insertar(6, 6);
+			hash.insertar(7, 7);
+			hash.insertar(8, 8);
+
+			assertEquals(hash.size(),10);
+			
+			
+		} catch (ElementoYaExistenteException e) {
+		}
+	}
 }

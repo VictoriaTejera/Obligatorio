@@ -144,6 +144,14 @@ public class HashCerrado<K, T> implements HashTable<K, T> {
 
 	}
 
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
 	private NodoHash<K, T> get(K clave) {
 		NodoHash<K, T> nodo = null;
 		int posEsperada = clave.hashCode() % size;
